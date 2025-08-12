@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>যোগাযোগ, সামাজিক মাধ্যম এবং ইমো অ্যাপ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            gap: 20px;
+            background: linear-gradient(180deg, #a8d0e6 0%, #374785 100%);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 400;
+        }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            background-color: rgba(240, 248, 255, 0.8);
+            border-radius: 8px;
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .result-box.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .result-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .add-contact {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+        }
+        .search-bar-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .search-bar-container input {
+            padding-right: 40px;
+        }
+        .search-bar-container .search-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
+
+        /* Updated CSS for scrollable contact list */
+        .contact-list-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            
+            /* The key styles for making it scrollable */
+            max-height: 350px; /* Adjust this value to show more or fewer contacts */
+            overflow-y: auto;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .contact-item:hover {
+            background-color: #e0e0e0;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-info .name {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .contact-info .number {
+            font-size: 14px;
+            color: #666;
+            margin-top: 2px;
+        }
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .contact-actions button {
+            width: auto;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 400;
+            margin-left: 0;
+            margin-top: 0;
+        }
+        .call-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+        .edit-btn {
+            background-color: #ffc107;
+            color: black;
+            border: none;
+        }
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: white;
+            border: none;
+        }
+        .facebook-btn {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+        }
+        .imo-btn {
+            background-color: #3eaf60;
+            color: white;
+            border: none;
+        }
+        .call-btn:hover { background-color: #218838; transform: none; }
+        .edit-btn:hover { background-color: #e0a800; transform: none; }
+        .whatsapp-btn:hover { background-color: #128c7e; transform: none; }
+        .facebook-btn:hover { background-color: #2d4373; transform: none; }
+        .imo-btn:hover { background-color: #34984f; transform: none; }
+        .single-number-actions {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 350px;
+            text-align: center;
+        }
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .modal-buttons button {
+            width: 45%;
+        }
+
+        /* Edit Modal specific styles */
+        #edit-modal .input-group {
+            margin-bottom: 15px;
+        }
+        #edit-modal h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-bar-container">
+        <h2>কন্টাক্ট খুঁজুন</h2>
+        <div style="position: relative;">
+            <input type="text" id="filterInput" placeholder="নাম বা নাম্বার দিয়ে খুঁজুন" oninput="filterContacts()">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+    
+    <div class="contact-list-container">
+        <h2>সব কন্টাক্ট</h2>
+        <ul id="contact-list" class="contact-list"></ul>
+    </div>
+
+    <div class="container add-contact">
+        <h2>নতুন কন্টাক্ট যোগ করুন</h2>
+        <div id="add-result-message" class="result-box"></div>
+        <div class="input-group">
+            <label for="newContactName">নাম (বাংলায়):</label>
+            <input type="text" id="newContactName" placeholder="কন্টাক্টের বাংলা নাম">
+        </div>
+        <div class="input-group">
+            <label for="newContactEnglishName">নাম (ইংরেজিতে):</label>
+            <input type="text" id="newContactEnglishName" placeholder="কন্টাক্টের ইংরেজি নাম">
+        </div>
+        <div class="input-group">
+            <label for="newContactNumbers">মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label>
+            <input type="text" id="newContactNumbers" placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy">
+        </div>
+        <div class="input-group">
+            <label for="newContactEmail">ইমেইল:</label>
+            <input type="email" id="newContactEmail" placeholder="উদাহরণ: name@example.com">
+        </div>
+        <div class="input-group">
+            <label for="newContactAddress">ঠিকানা:</label>
+            <input type="text" id="newContactAddress" placeholder="কন্টাক্টের ঠিকানা">
+        </div>
+        <button onclick="addContact()">যোগ করুন</button>
+    </div>
+    
+    <!-- Custom Modal for Edit Contact -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2>কন্টাক্ট এডিট করুন</h2>
+            <div class="input-group">
+                <label for="editContactName">নাম (বাংলায়):</label>
+                <input type="text" id="editContactName" placeholder="কন্টাক্টের বাংলা নাম">
+            </div>
+            <div class="input-group">
+                <label for="editContactEnglishName">নাম (ইংরেজিতে):</label>
+                <input type="text" id="editContactEnglishName" placeholder="কন্টাক্টের ইংরেজি নাম">
+            </div>
+            <div class="input-group">
+                <label for="editContactNumbers">মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label>
+                <input type="text" id="editContactNumbers" placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy">
+            </div>
+            <div class="input-group">
+                <label for="editContactEmail">ইমেইল:</label>
+                <input type="email" id="editContactEmail" placeholder="উদাহরণ: name@example.com">
+            </div>
+            <div class="input-group">
+                <label for="editContactAddress">ঠিকানা:</label>
+                <input type="text" id="editContactAddress" placeholder="কন্টাক্টের ঠিকানা">
+            </div>
+            <div class="modal-buttons">
+                <button onclick="saveEdit()">সংরক্ষণ করুন</button>
+                <button onclick="closeEditModal()">বাতিল</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Start of provided contact data
+        let contacts = JSON.parse(localStorage.getItem('contacts')) || [
+            {"name":"Tai","englishName":"Tai","numbers":["+8801757435049"]},
+            {"name":"No Word","englishName":"No Word","numbers":["+8801314722542"]},
+            {"name":"5000 Taka","englishName":"5000 Taka","numbers":["+8801715621365"]},
+            {"name":"71Worker","englishName":"71Worker","numbers":["+8801872397445"]},
+            {"name":"Aaaa","englishName":"Aaaa","numbers":["+855 87 465 384"]},
+            {"name":"AAcount","englishName":"AAcount","numbers":["1-211-00"]},
+            {"name":"Abbu","englishName":"Abbu","numbers":["017-015-27027"]},
+            {"name":"abdul Hai Er","englishName":"abdul Hai Er","numbers":["+8801798017608"]},
+            {"name":"Abdul Hai Membar","englishName":"Abdul Hai Membar","numbers":["017-273-52162"]},
+            {"name":"Abdul Hi","englishName":"Abdul Hi","numbers":["+880 1888-571521"]},
+            {"name":"Abdulla","englishName":"Abdulla","numbers":["+8801317297159"]},
+            {"name":"Abul","englishName":"Abul","numbers":["+8801767896215", "+8801789035794"]},
+            {"name":"Abul Hasan","englishName":"Abul Hasan","numbers":["+966571640726"]},
+            {"name":"Add....","englishName":"Add....","numbers":["018-257-64983"]},
+            {"name":"ADDEL","englishName":"ADDEL","numbers":["+97333520217"]},
+            {"name":"Adnan","englishName":"Adnan","numbers":["015-900-96286", "+880 1862-633745", "+880 1744-877880"]},
+            {"name":"Afa","englishName":"Afa","numbers":["017-196-06971"]},
+            {"name":"Afroja","englishName":"Afroja","numbers":["+8801784525018", "+8801518345104"]},
+            {"name":"agent 9 Wc","englishName":"agent 9 Wc","numbers":["+8801714446799"]},
+            {"name":"Agent 9 Wct","englishName":"Agent 9 Wct","numbers":["017-932-37333"]},
+            {"name":"agent","englishName":"agent","numbers":["019-158-18120"]},
+            {"name":"agent Fack","englishName":"agent Fack","numbers":["017-636-62816"]},
+            {"name":"Agent","englishName":"Agent","numbers":["+60142292707"]},
+            {"name":"Ahasan","englishName":"Ahasan","numbers":["+880 1724-493233"]},
+            {"name":"Aj Year","englishName":"Aj Year","numbers":["017-142-55074"]},
+            {"name":"Akash","englishName":"Akash","numbers":["+442070974844"]},
+            {"name":"Akhi","englishName":"Akhi","numbers":["014-075-42420"]},
+            {"name":"Akkas","englishName":"Akkas","numbers":["+8801751683234"]},
+            {"name":"Akmal","englishName":"Akmal","numbers":["+8801748991899"]},
+            {"name":"Akram","englishName":"Akram","numbers":["017-954-53704"]},
+            {"name":"Akramul","englishName":"Akramul","numbers":["+8801977549645"]},
+            {"name":"Akramul Vai","englishName":"Akramul Vai","numbers":["017-393-68706"]},
+            {"name":"Al aman","englishName":"Al aman","numbers":["+8801792407547"]},
+            {"name":"Al amin","englishName":"Al amin","numbers":["+8801714752336"]},
+            {"name":"Al","englishName":"Al","numbers":["016-282-98522"]},
+            {"name":"Al-Amin","englishName":"Al-Amin","numbers":["+8801758714707", "013-044-94102"]},
+            {"name":"ali Akbar Bai","englishName":"ali Akbar Bai","numbers":["017-125-19377"]},
+            {"name":"Ali","englishName":"Ali","numbers":["+880 1403-979330"]},
+            {"name":"Aliyabad","englishName":"Aliyabad","numbers":["+8801322161704"]},
+            {"name":"almas","englishName":"almas","numbers":["017-164-23871"]},
+            {"name":"Almas Vai","englishName":"Almas Vai","numbers":["+8801958124809"]},
+            {"name":"Alom Singar","englishName":"Alom Singar","numbers":["+8801928796426"]},
+            {"name":"Alomgir","englishName":"Alomgir","numbers":["+8801739276434"]},
+            {"name":"Amar Ma","englishName":"Amar Ma","numbers":["017-200-50460"]},
+            {"name":"Ami","englishName":"Ami","numbers":["019-204-40907"]},
+            {"name":"Amin Kha..mim","englishName":"Amin Kha..mim","numbers":["017-594-69234"]},
+            {"name":"Ammo","englishName":"Ammo","numbers":["+8801638027560"]},
+            {"name":"Amzad","englishName":"Amzad","numbers":["019-256-12428"]},
+            {"name":"Anamnul Fnd Polli","englishName":"Anamnul Fnd Polli","numbers":["017-789-05442"]},
+            {"name":"Anowar","englishName":"Anowar","numbers":["017-259-85598"]},
+            {"name":"Anower","englishName":"Anower","numbers":["+8801707157568"]},
+            {"name":"Anupum vai","englishName":"Anupum vai","numbers":["+8801928116456"]},
+            {"name":"apu","englishName":"apu","numbers":["017-871-80774"]},
+            {"name":"Arafat","englishName":"Arafat","numbers":["015-184-22219", "+880 1305-299883"]},
+            {"name":"Arif","englishName":"Arif","numbers":["017-951-08641", "+8801719876140"]},
+            {"name":"arif Vai","englishName":"arif Vai","numbers":["+8801765864149"]},
+            {"name":"Arifa","englishName":"Arifa","numbers":["+8801748750548", "+880 1577-024225", "017-120-99833"]},
+            {"name":"Arifa islam","englishName":"Arifa islam","numbers":["+8801638027560"]},
+            {"name":"Arifa Nanu","englishName":"Arifa Nanu","numbers":["+8801905393168"]},
+            {"name":"Arifar Ammu","englishName":"Arifar Ammu","numbers":["015-183-91408"]},
+            {"name":"Arifujjaman","englishName":"Arifujjaman","numbers":["017-548-53812"]},
+            {"name":"Ark","englishName":"Ark","numbers":["+880 1312-618715"]},
+            {"name":"Asad Beparir","englishName":"Asad Beparir","numbers":["+8801313236648"]},
+            {"name":"Aslam Fnd","englishName":"Aslam Fnd","numbers":["017-719-91057"]},
+            {"name":"Aslam Vai","englishName":"Aslam Vai","numbers":["017-720-82826"]},
+            {"name":"Asraf Vai Tils","englishName":"Asraf Vai Tils","numbers":["018-492-80500"]},
+            {"name":"At","englishName":"At","numbers":["013-017-54154"]},
+            {"name":"Atik","englishName":"Atik","numbers":["017-451-83077", "017-847-59082", "014-000-87341"]},
+            {"name":"Atkm","englishName":"Atkm","numbers":["+8801991168680"]},
+            {"name":"Aunty Akramuler","englishName":"Aunty Akramuler","numbers":["017-166-81733"]},
+            {"name":"Ayan Khan","englishName":"Ayan Khan","numbers":["+855 96 301 9756"]},
+            {"name":"Aysha Nid Sobulla Sikkda","englishName":"Aysha Nid Sobulla Sikkda","numbers":["018-379-98271"]},
+            {"name":"Azad","englishName":"Azad","numbers":["+8801312287523"]},
+            {"name":"Azad Vai","englishName":"Azad Vai","numbers":["018-174-89653"]},
+            {"name":"aziarat327","englishName":"aziarat327","numbers":["+966 53 326 1164"]},
+            {"name":"Aziz","englishName":"Aziz","numbers":["+96560492921", "+96566278780"]},
+            {"name":"Baba New","englishName":"Baba New","numbers":["017-830-84362"]},
+            {"name":"babul","englishName":"babul","numbers":["017-145-86833"]},
+            {"name":"Badsa","englishName":"Badsa","numbers":["+8801732516515"]},
+            {"name":"Badsa Kaka","englishName":"Badsa Kaka","numbers":["+880 1739-221828"]},
+            {"name":"Badsha","englishName":"Badsha","numbers":["+855 81 998 524"]},
+            {"name":"Bari Ala","englishName":"Bari Ala","numbers":["017-533-03241"]},
+            {"name":"Basar","englishName":"Basar","numbers":["017-214-03886", "017-584-98171"]},
+            {"name":"basar Vai Dilar","englishName":"basar Vai Dilar","numbers":["+880 1956-670083"]},
+            {"name":"basar Vai","englishName":"basar Vai","numbers":["880-174-0908388"]},
+            {"name":"Bill Vai","englishName":"Bill Vai","numbers":["+880 1751-542987"]},
+            {"name":"Billal Member","englishName":"Billal Member","numbers":["017-404-18694"]},
+            {"name":"Billal Vai New Matrittokalin Tania Akter","englishName":"Billal Vai New Matrittokalin Tania Akter","numbers":["017-870-74258"]},
+            {"name":"Bkash","englishName":"Bkash","numbers":["018-393-19352"]},
+            {"name":"Black Boy","englishName":"Black Boy","numbers":["+966572281623"]},
+            {"name":"Bmmp","englishName":"Bmmp","numbers":["018-688-43627"]},
+            {"name":"Bolod","englishName":"Bolod","numbers":["017-795-18208"]},
+            {"name":"Bow","englishName":"Bow","numbers":["+8801784572845"]},
+            {"name":"Bro","englishName":"Bro","numbers":["+8801794001566"]},
+            {"name":"BRTA","englishName":"BRTA","numbers":["+880 1718-290844"]},
+            {"name":"Call Dite","englishName":"Call Dite","numbers":["017-154-77678"]},
+            {"name":"Cd","englishName":"Cd","numbers":["+8801401424166"]},
+            {"name":"Chan Mia","englishName":"Chan Mia","numbers":["+8801741556400"]},
+            {"name":"Char Billal","englishName":"Char Billal","numbers":["+880 1840-982594"]},
+            {"name":"Char Emarot bike","englishName":"Char Emarot bike","numbers":["+8801781921201"]},
+            {"name":"Char Farok","englishName":"Char Farok","numbers":["+8801745691742"]},
+            {"name":"char Khoka","englishName":"char Khoka","numbers":["017-262-66172"]},
+            {"name":"char Masud","englishName":"char Masud","numbers":["+8801712333571"]},
+            {"name":"Char Sifat","englishName":"Char Sifat","numbers":["+8801330673491"]},
+            {"name":"Char Sohidul Vai","englishName":"Char Sohidul Vai","numbers":["013-045-02855"]},
+            {"name":"Charbhadrasan Subzonal Office Agm","englishName":"Charbhadrasan Subzonal Office Agm","numbers":["+880 1704-108988"]},
+            {"name":"Choto Ammo","englishName":"Choto Ammo","numbers":["+8801580988327"]},
+            {"name":"Choto","englishName":"Choto","numbers":["+8801770413695"]},
+            {"name":"Chr","englishName":"Chr","numbers":["+8801729505125", "+8801511929406", "+880 1734-188265"]},
+            {"name":"Chr family","englishName":"Chr family","numbers":["+8801575750806"]},
+            {"name":"Chr jahangir","englishName":"Chr jahangir","numbers":["+880 1715-696325"]},
+            {"name":"Chr M-","englishName":"Chr M-","numbers":["+8801789535517"]},
+            {"name":"Chr M1","englishName":"Chr M1","numbers":["+8801760782188"]},
+            {"name":"Chr Manik PIO","englishName":"Chr Manik PIO","numbers":["+880 1746-051330"]},
+            {"name":"chr Membar k 8 No","englishName":"chr Membar k 8 No","numbers":["+8801725430611"]},
+            {"name":"Chr OCLD","englishName":"Chr OCLD","numbers":["+880 1721-873151"]},
+            {"name":"Chr Sehab Khan Sikkha Officer Tag","englishName":"Chr Sehab Khan Sikkha Officer Tag","numbers":["+880 1719-699870"]},
+            {"name":"Chr Siddik","englishName":"Chr Siddik","numbers":["+8801777912015", "+880 1595-065376"]},
+            {"name":"Chr Subhan","englishName":"Chr Subhan","numbers":["+8801734188265"]},
+            {"name":"Chunnu","englishName":"Chunnu","numbers":["+966 54 249 3563"]},
+            {"name":"Chunnu Vai","englishName":"Chunnu Vai","numbers":["+97333517681"]},
+            {"name":"Cn Sorbandia","englishName":"Cn Sorbandia","numbers":["+8801318616236"]},
+            {"name":"Computer","englishName":"Computer","numbers":["017-151-94774"]},
+            {"name":"Cordial","englishName":"Cordial","numbers":["+8801709273855"]},
+            {"name":"Cricket","englishName":"Cricket","numbers":["014-019-04915", "018-132-55259"]},
+            {"name":"D S B Alim Vai","englishName":"D S B Alim Vai","numbers":["017-124-49901"]},
+            {"name":"Dablu","englishName":"Dablu","numbers":["017-259-75789"]},
+            {"name":"Dada","englishName":"Dada","numbers":["017-900-69669"]},
+            {"name":"Dalima","englishName":"Dalima","numbers":["+880 1305-939181"]},
+            {"name":"DALO","englishName":"DALO","numbers":["017-870-76375"]},
+            {"name":"daloar","englishName":"daloar","numbers":["009-689-1889892"]},
+            {"name":"Damion","englishName":"Damion","numbers":["+8801933129583"]},
+            {"name":"Danes","englishName":"Danes","numbers":["003-938-94537139", "+393894537139"]},
+            {"name":"Daraz","englishName":"Daraz","numbers":["+8801779335757"]},
+            {"name":"Dc Of","englishName":"Dc Of","numbers":["+880 1729-334048"]},
+            {"name":"Ddd","englishName":"Ddd","numbers":["013-018-04613"]},
+            {"name":"Ddddd","englishName":"Ddddd","numbers":["017-159-54906"]},
+            {"name":"Deloar Molla A","englishName":"Deloar Molla A","numbers":["019-248-89181"]},
+            {"name":"Dia","englishName":"Dia","numbers":["018-638-78925"]},
+            {"name":"Didar Vai","englishName":"Didar Vai","numbers":["+96566296954"]},
+            {"name":"Didar","englishName":"Didar","numbers":["009-659-6695607"]},
+            {"name":"Difenc","englishName":"Difenc","numbers":["+8801700666245"]},
+            {"name":"Dinslam","englishName":"Dinslam","numbers":["018-892-93240"]},
+            {"name":"Dipto","englishName":"Dipto","numbers":["+8801617179809"]},
+            {"name":"Dipu","englishName":"Dipu","numbers":["+8801715150086"]},
+            {"name":"Dokan","englishName":"Dokan","numbers":["+8801314680515"]},
+            {"name":"Douasa","englishName":"Douasa","numbers":["013-198-48798"]},
+            {"name":"Dsb Ikbal Sir Char","englishName":"Dsb Ikbal Sir Char","numbers":["+880 1748-589306"]},
+            {"name":"Dsb Rezaul Sir","englishName":"Dsb Rezaul Sir","numbers":["017-209-22147"]},
+            {"name":"Dukan","englishName":"Dukan","numbers":["017-971-75010"]},
+            {"name":"Dukandar","englishName":"Dukandar","numbers":["+8801736853673"]},
+            {"name":"E Ten","englishName":"E Ten","numbers":["016-418-69079"]},
+            {"name":"Edris Vai","englishName":"Edris Vai","numbers":["+8801618763235"]},
+            {"name":"Emon Choto Vai Imran","englishName":"Emon Choto Vai Imran","numbers":["013-165-77749"]},
+            {"name":"Emon","englishName":"Emon","numbers":["013-334-54347"]},
+            {"name":"Emran Kolija","englishName":"Emran Kolija","numbers":["+8801765489978"]},
+            {"name":"Emran Vai","englishName":"Emran Vai","numbers":["017-654-89978"]},
+            {"name":"Emtiyaj","englishName":"Emtiyaj","numbers":["+8801729169820"]},
+            {"name":"Ensana Vabi","englishName":"Ensana Vabi","numbers":["017-688-01339"]},
+            {"name":"Ensana Vabi Robi","englishName":"Ensana Vabi Robi","numbers":["018-562-77585"]},
+            {"name":"Ersader","englishName":"Ersader","numbers":["+8801728234614"]},
+            {"name":"Esmotara Nid","englishName":"Esmotara Nid","numbers":["+8801740765515"]},
+            {"name":"Eye","englishName":"Eye","numbers":["+8801864198112"]},
+            {"name":"face wash","englishName":"face wash","numbers":["018-202-24991"]},
+            {"name":"Fahad","englishName":"Fahad","numbers":["017-294-61378"]},
+            {"name":"FAHIM","englishName":"FAHIM","numbers":["017-224-39652"]},
+            {"name":"Faijul","englishName":"Faijul","numbers":["+8801308935757"]},
+            {"name":"Falu","englishName":"Falu","numbers":["+8801732169798"]},
+            {"name":"farhan","englishName":"farhan","numbers":["+8801765674161"]},
+            {"name":"Farhan","englishName":"Farhan","numbers":["019-993-81361"]},
+            {"name":"Farid Biay","englishName":"Farid Biay","numbers":["+8801760586516"]},
+            {"name":"Farid","englishName":"Farid","numbers":["017-273-55999"]},
+            {"name":"Farid Vai","englishName":"Farid Vai","numbers":["+8801753305288"]},
+            {"name":"Faridpur","englishName":"Faridpur","numbers":["+8801712434377"]},
+            {"name":"Faroj","englishName":"Faroj","numbers":["+8801783422714"]},
+            {"name":"Farok","englishName":"Farok","numbers":["880-174-8501692"]},
+            {"name":"Farok Vai","englishName":"Farok Vai","numbers":["017-569-01152"]},
+            {"name":"Faruk Vai","englishName":"Faruk Vai","numbers":["+8801725945359"]},
+            {"name":"ferdousi Matrittokalin","englishName":"ferdousi Matrittokalin","numbers":["+8801334528235"]},
+            {"name":"Firoj Vai North","englishName":"Firoj Vai North","numbers":["+8801712803170"]},
+            {"name":"Firuj Vai","englishName":"Firuj Vai","numbers":["017-128-03170", "017-110-59179"]},
+            {"name":"Foisal Agent","englishName":"Foisal Agent","numbers":["+8801718128848"]},
+            {"name":"Fojlo","englishName":"Fojlo","numbers":["+8801300728190"]},
+            {"name":"Food Office","englishName":"Food Office","numbers":["017-135-94689"]},
+            {"name":"Food Officer","englishName":"Food Officer","numbers":["017-374-88211"]},
+            {"name":"Food","englishName":"Food","numbers":["017-127-34284"]},
+            {"name":"Fopu","englishName":"Fopu","numbers":["+8801709829307"]},
+            {"name":"Forhad","englishName":"Forhad","numbers":["+8801329544555"]},
+            {"name":"Forhad Sir","englishName":"Forhad Sir","numbers":["+8801708392487"]},
+            {"name":"Forhad Vai","englishName":"Forhad Vai","numbers":["017-193-93868"]},
+            {"name":"Foysal Vai Cox","englishName":"Foysal Vai Cox","numbers":["018-196-40291"]},
+            {"name":"Gari Malik","englishName":"Gari Malik","numbers":["+8801761980877"]},
+            {"name":"Gm raju","englishName":"Gm raju","numbers":["+8801921268748"]},
+            {"name":"Gojariya","englishName":"Gojariya","numbers":["018-853-7642"]},
+        ];
+        // End of provided contact data
+        
+        let contactToEditIndex = null;
+        const editModal = document.getElementById('edit-modal');
+        const filterInput = document.getElementById('filterInput');
+
+        function saveContacts() {
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+        }
+
+        function renderContacts(filteredContacts = contacts) {
+            const contactList = document.getElementById('contact-list');
+            contactList.innerHTML = '';
+
+            if (filteredContacts.length === 0) {
+                contactList.innerHTML = '<p style="text-align: center; color: #666;">কোনো কন্টাক্ট পাওয়া যায়নি।</p>';
+                return;
+            }
+
+            filteredContacts.forEach((contact, index) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('contact-item');
+
+                // Build a string for the numbers
+                const numbersHtml = contact.numbers.map(num => `<span class="number">${num}</span>`).join('<br>');
+
+                // Create action buttons for each number
+                const actionButtonsHtml = contact.numbers.map(num => `
+                    <div class="single-number-actions">
+                        <button class="call-btn" onclick="callContact('${num}')"><i class="fas fa-phone-alt"></i></button>
+                        <button class="whatsapp-btn" onclick="openWhatsApp('${num}')"><i class="fab fa-whatsapp"></i></button>
+                        <button class="imo-btn" onclick="openImo('${num}')"><i class="fas fa-video"></i></button>
+                    </div>
+                `).join('');
+
+                listItem.innerHTML = `
+                    <div class="contact-info">
+                        <span class="name">${contact.name}</span>
+                        <div class="contact-numbers-display">${numbersHtml}</div>
+                    </div>
+                    <div class="contact-actions">
+                        ${actionButtonsHtml}
+                        <button class="edit-btn" onclick="showEditModal(${index})"><i class="fas fa-edit"></i></button>
+                    </div>
+                `;
+                contactList.appendChild(listItem);
+            });
+        }
+
+        function filterContacts() {
+            const searchText = filterInput.value.toLowerCase();
+            const filtered = contacts.filter(contact =>
+                contact.name.toLowerCase().includes(searchText) ||
+                (contact.englishName && contact.englishName.toLowerCase().includes(searchText)) ||
+                contact.numbers.some(num => num.includes(searchText)) ||
+                (contact.email && contact.email.toLowerCase().includes(searchText)) ||
+                (contact.address && contact.address.toLowerCase().includes(searchText))
+            );
+            renderContacts(filtered);
+        }
+
+        function showEditModal(index) {
+            contactToEditIndex = index;
+            const contact = contacts[index];
+            document.getElementById('editContactName').value = contact.name;
+            document.getElementById('editContactEnglishName').value = contact.englishName || '';
+            document.getElementById('editContactNumbers').value = contact.numbers.join(', ');
+            document.getElementById('editContactEmail').value = contact.email || '';
+            document.getElementById('editContactAddress').value = contact.address || '';
+            editModal.style.display = 'flex';
+        }
+        
+        function closeEditModal() {
+            editModal.style.display = 'none';
+            contactToEditIndex = null;
+        }
+
+        function saveEdit() {
+            if (contactToEditIndex !== null) {
+                const name = document.getElementById('editContactName').value.trim();
+                const englishName = document.getElementById('editContactEnglishName').value.trim();
+                const numbers = document.getElementById('editContactNumbers').value.trim().split(',').map(n => n.trim()).filter(n => n);
+                const email = document.getElementById('editContactEmail').value.trim();
+                const address = document.getElementById('editContactAddress').value.trim();
+
+                if (!name || numbers.length === 0) {
+                    alert('নাম এবং অন্তত একটি মোবাইল নাম্বার দিতে হবে।');
+                    return;
+                }
+
+                contacts[contactToEditIndex] = { name, englishName, numbers, email, address };
+                saveContacts();
+                renderContacts();
+                closeEditModal();
+            }
+        }
+
+        function addContact() {
+            const nameInput = document.getElementById('newContactName');
+            const englishNameInput = document.getElementById('newContactEnglishName');
+            const numbersInput = document.getElementById('newContactNumbers');
+            const emailInput = document.getElementById('newContactEmail');
+            const addressInput = document.getElementById('newContactAddress');
+            const addResultMessage = document.getElementById('add-result-message');
+            
+            const name = nameInput.value.trim();
+            const englishName = englishNameInput.value.trim();
+            const numbers = numbersInput.value.trim().split(',').map(n => n.trim()).filter(n => n);
+            const email = emailInput.value.trim();
+            const address = addressInput.value.trim();
+
+            addResultMessage.textContent = '';
+            addResultMessage.className = 'result-box';
+
+            if (name === '' || numbers.length === 0) {
+                addResultMessage.textContent = 'নাম এবং অন্তত একটি নাম্বার উভয়ই দিন।';
+                addResultMessage.classList.add('error');
+                return;
+            }
+
+            const isDuplicate = contacts.some(contact => contact.numbers.some(num => numbers.includes(num)));
+            if (isDuplicate) {
+                addResultMessage.textContent = 'এই নাম্বারটি ইতিমধ্যে যোগ করা আছে।';
+                addResultMessage.classList.add('error');
+                return;
+            }
+            
+            contacts.push({ name, englishName, numbers, email, address });
+            saveContacts();
+            renderContacts();
+
+            addResultMessage.textContent = `${name} কন্টাক্টটি সফলভাবে যোগ করা হয়েছে।`;
+            addResultMessage.classList.add('success');
+
+            nameInput.value = '';
+            englishNameInput.value = '';
+            numbersInput.value = '';
+            emailInput.value = '';
+            addressInput.value = '';
+        }
+
+        function callContact(number) {
+            window.location.href = `tel:${number}`;
+        }
+        
+        function openWhatsApp(number) {
+            const formattedNumber = number.replace(/[^0-9+]/g, '');
+            window.open(`https://wa.me/${formattedNumber}`, '_blank');
+        }
+
+        function openImo(number) {
+            window.open(`imo://user/${number.replace(/[^0-9+]/g, '')}`, '_blank');
+        }
+
+        function searchFacebook(name) {
+            const searchQuery = `Facebook profile of ${name}`;
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContacts();
+        });
+    </script>
+</body>
+</html>
