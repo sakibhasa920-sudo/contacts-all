@@ -1,1002 +1,1158 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>যোগাযোগ, সামাজিক মাধ্যম এবং ইমো অ্যাপ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap');
 
-        body {
-            font-family: 'Noto Sans Bengali', sans-serif;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            gap: 20px;
-            background: linear-gradient(180deg, #a8d0e6 0%, #374785 100%);
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: transform 0.3s ease-in-out;
-            position: relative;
-        }
-        .container:hover {
-            transform: translateY(-5px);
-        }
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-        .input-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 400;
-        }
-        input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-            outline: none;
-        }
-        button {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .result-box {
-            margin-top: 25px;
-            padding: 15px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #2c3e50;
-            background-color: rgba(240, 248, 255, 0.8);
-            border-radius: 8px;
-            min-height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-        .result-box.success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .result-box.error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-        .add-contact {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 400px;
-        }
-        .search-bar-container {
-            width: 100%;
-            max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        .search-bar-container input {
-            padding-right: 40px;
-        }
-        .search-bar-container .search-icon {
-            position: absolute;
-            right: 35px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #007bff;
-        }
+      body {
+          font-family: 'Noto Sans Bengali', sans-serif;
+          color: #333;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          margin: 0;
+          padding: 20px;
+          box-sizing: border-box;
+          gap: 20px;
+          background: linear-gradient(180deg, #a8d0e6 0%, #374785 100%);
+      }
+      .container {
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          padding: 20px;
+          border-radius: 20px;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          text-align: center;
+          width: 100%;
+          max-width: 400px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          transition: transform 0.3s ease-in-out;
+          position: relative;
+      }
+      .container:hover {
+          transform: translateY(-5px);
+      }
+      h2 {
+          color: #2c3e50;
+          margin-bottom: 25px;
+          font-weight: 700;
+      }
+      .input-group {
+          margin-bottom: 25px;
+          text-align: left;
+      }
+      .input-group label {
+          display: block;
+          margin-bottom: 8px;
+          color: #555;
+          font-weight: 400;
+      }
+      input {
+          width: 100%;
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-size: 16px;
+          transition: all 0.3s ease;
+      }
+      input:focus {
+          border-color: #007bff;
+          box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+          outline: none;
+      }
+      button {
+          width: 100%;
+          background-color: #007bff;
+          color: white;
+          padding: 12px 15px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          margin-top: 10px;
+      }
+      button:hover {
+          background-color: #0056b3;
+          transform: translateY(-2px);
+      }
+      .result-box {
+          margin-top: 25px;
+          padding: 15px;
+          font-size: 20px;
+          font-weight: 700;
+          color: #2c3e50;
+          background-color: rgba(240, 248, 255, 0.8);
+          border-radius: 8px;
+          min-height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.3s ease;
+      }
+      .result-box.success {
+          background-color: #d4edda;
+          color: #155724;
+      }
+      .result-box.error {
+          background-color: #f8d7da;
+          color: #721c24;
+      }
+      .add-contact {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 400px;
+      }
+      .search-bar-container {
+          width: 100%;
+          max-width: 400px;
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          padding: 20px;
+          border-radius: 20px;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .search-bar-container input {
+          padding-right: 40px;
+      }
+      .search-bar-container .search-icon {
+          position: absolute;
+          right: 35px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #007bff;
+      }
 
-        /* Updated CSS for scrollable contact list */
-        .contact-list-container {
-            width: 100%;
-            max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            
-            /* The key styles for making it scrollable */
-            max-height: 350px; /* Adjust this value to show more or fewer contacts */
-            overflow-y: auto;
-        }
+      /* Updated CSS for scrollable contact list */
+      .contact-list-container {
+          width: 100%;
+          max-width: 400px;
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          padding: 20px;
+          border-radius: 20px;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          border: 1px solid rgba(255, 255, 255, 0.18);
 
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        .contact-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            transition: background-color 0.3s ease;
-        }
-        .contact-item:hover {
-            background-color: #e0e0e0;
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-info .name {
-            font-weight: 700;
-            color: #2c3e50;
-        }
-        .contact-info .number {
-            font-size: 14px;
-            color: #666;
-            margin-top: 2px;
-        }
-        .contact-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .contact-actions button {
-            width: auto;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: 400;
-            margin-left: 0;
-            margin-top: 0;
-        }
-        .call-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-        }
-        .edit-btn {
-            background-color: #ffc107;
-            color: black;
-            border: none;
-        }
-        .whatsapp-btn {
-            background-color: #25d366;
-            color: white;
-            border: none;
-        }
-        .facebook-btn {
-            background-color: #3b5998;
-            color: white;
-            border: none;
-        }
-        .imo-btn {
-            background-color: #3eaf60;
-            color: white;
-            border: none;
-        }
-        .call-btn:hover { background-color: #218838; transform: none; }
-        .edit-btn:hover { background-color: #e0a800; transform: none; }
-        .whatsapp-btn:hover { background-color: #128c7e; transform: none; }
-        .facebook-btn:hover { background-color: #2d4373; transform: none; }
-        .imo-btn:hover { background-color: #34984f; transform: none; }
-        .single-number-actions {
-            display: flex;
-            gap: 5px;
-            margin-top: 5px;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border: 1px solid #888;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 350px;
-            text-align: center;
-        }
-        .modal-buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-around;
-        }
-        .modal-buttons button {
-            width: 45%;
-        }
+          /* The key styles for making it scrollable */
+          max-height: 350px; /* Adjust this value to show more or fewer contacts */
+          overflow-y: auto;
+      }
 
-        /* Edit Modal specific styles */
-        #edit-modal .input-group {
-            margin-bottom: 15px;
-        }
-        #edit-modal h2 {
-            margin-bottom: 20px;
-        }
+      .contact-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          text-align: left;
+      }
+      .contact-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 15px;
+          background-color: #f0f0f0;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          transition: background-color 0.3s ease;
+      }
+      .contact-item:hover {
+          background-color: #e0e0e0;
+      }
+      .contact-info {
+          display: flex;
+          flex-direction: column;
+      }
+      .contact-info .name {
+          font-weight: 700;
+          color: #2c3e50;
+      }
+      .contact-info .number {
+          font-size: 14px;
+          color: #666;
+          margin-top: 2px;
+      }
+      .contact-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+      }
+      .contact-actions button {
+          width: auto;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: 400;
+          margin-left: 0;
+          margin-top: 0;
+      }
+      .call-btn {
+          background-color: #28a745;
+          color: white;
+          border: none;
+      }
+      .edit-btn {
+          background-color: #ffc107;
+          color: black;
+          border: none;
+      }
+      .whatsapp-btn {
+          background-color: #25d366;
+          color: white;
+          border: none;
+      }
+      .facebook-btn {
+          background-color: #3b5998;
+          color: white;
+          border: none;
+      }
+      .imo-btn {
+          background-color: #3eaf60;
+          color: white;
+          border: none;
+      }
+      .call-btn:hover { background-color: #218838; transform: none; }
+      .edit-btn:hover { background-color: #e0a800; transform: none; }
+      .whatsapp-btn:hover { background-color: #128c7e; transform: none; }
+      .facebook-btn:hover { background-color: #2d4373; transform: none; }
+      .imo-btn:hover { background-color: #34984f; transform: none; }
+      .single-number-actions {
+          display: flex;
+          gap: 5px;
+          margin-top: 5px;
+      }
+      /* Modal styles */
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 10;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.4);
+          justify-content: center;
+          align-items: center;
+      }
+      .modal-content {
+          background-color: #fefefe;
+          padding: 20px;
+          border: 1px solid #888;
+          border-radius: 10px;
+          width: 80%;
+          max-width: 350px;
+          text-align: center;
+      }
+      .modal-buttons {
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-around;
+      }
+      .modal-buttons button {
+          width: 45%;
+      }
+
+      /* Edit Modal specific styles */
+      #edit-modal .input-group {
+          margin-bottom: 15px;
+      }
+      #edit-modal h2 {
+          margin-bottom: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="search-bar-container">
-        <h2>কন্টাক্ট খুঁজুন</h2>
-        <div style="position: relative;">
-            <input type="text" id="filterInput" placeholder="নাম বা নাম্বার দিয়ে খুঁজুন" oninput="filterContacts()">
-            <i class="fas fa-search search-icon"></i>
-        </div>
+      <h2>কন্টাক্ট খুঁজুন</h2>
+      <div style="position: relative;">
+        <input
+          type="text"
+          id="filterInput"
+          placeholder="নাম বা নাম্বার দিয়ে খুঁজুন"
+          oninput="filterContacts()"
+        />
+        <i class="fas fa-search search-icon"></i>
+      </div>
     </div>
-    
+
     <div class="contact-list-container">
-        <h2>সব কন্টাক্ট</h2>
-        <ul id="contact-list" class="contact-list"></ul>
+      <h2>সব কন্টাক্ট</h2>
+      <ul id="contact-list" class="contact-list"></ul>
     </div>
 
     <div class="container add-contact">
-        <h2>নতুন কন্টাক্ট যোগ করুন</h2>
-        <div id="add-result-message" class="result-box"></div>
-        <div class="input-group">
-            <label for="newContactName">নাম (বাংলায়):</label>
-            <input type="text" id="newContactName" placeholder="কন্টাক্টের বাংলা নাম">
-        </div>
-        <div class="input-group">
-            <label for="newContactEnglishName">নাম (ইংরেজিতে):</label>
-            <input type="text" id="newContactEnglishName" placeholder="কন্টাক্টের ইংরেজি নাম">
-        </div>
-        <div class="input-group">
-            <label for="newContactNumbers">মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label>
-            <input type="text" id="newContactNumbers" placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy">
-        </div>
-        <div class="input-group">
-            <label for="newContactEmail">ইমেইল:</label>
-            <input type="email" id="newContactEmail" placeholder="উদাহরণ: name@example.com">
-        </div>
-        <div class="input-group">
-            <label for="newContactAddress">ঠিকানা:</label>
-            <input type="text" id="newContactAddress" placeholder="কন্টাক্টের ঠিকানা">
-        </div>
-        <button onclick="addContact()">যোগ করুন</button>
+      <h2>নতুন কন্টাক্ট যোগ করুন</h2>
+      <div id="add-result-message" class="result-box"></div>
+      <div class="input-group">
+        <label for="newContactName">নাম (বাংলায়):</label>
+        <input
+          type="text"
+          id="newContactName"
+          placeholder="কন্টাক্টের বাংলা নাম"
+        />
+      </div>
+      <div class="input-group">
+        <label for="newContactEnglishName">নাম (ইংরেজিতে):</label>
+        <input
+          type="text"
+          id="newContactEnglishName"
+          placeholder="কন্টাক্টের ইংরেজি নাম"
+        />
+      </div>
+      <div class="input-group">
+        <label for="newContactNumbers"
+          >মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label
+        >
+        <input
+          type="text"
+          id="newContactNumbers"
+          placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy"
+        />
+      </div>
+      <div class="input-group">
+        <label for="newContactEmail">ইমেইল:</label>
+        <input
+          type="email"
+          id="newContactEmail"
+          placeholder="উদাহরণ: name@example.com"
+        />
+      </div>
+      <div class="input-group">
+        <label for="newContactAddress">ঠিকানা:</label>
+        <input
+          type="text"
+          id="newContactAddress"
+          placeholder="কন্টাক্টের ঠিকানা"
+        />
+      </div>
+      <button onclick="addContact()">যোগ করুন</button>
     </div>
-    
+
     <!-- Custom Modal for Edit Contact -->
     <div id="edit-modal" class="modal">
-        <div class="modal-content">
-            <h2>কন্টাক্ট এডিট করুন</h2>
-            <div class="input-group">
-                <label for="editContactName">নাম (বাংলায়):</label>
-                <input type="text" id="editContactName" placeholder="কন্টাক্টের বাংলা নাম">
-            </div>
-            <div class="input-group">
-                <label for="editContactEnglishName">নাম (ইংরেজিতে):</label>
-                <input type="text" id="editContactEnglishName" placeholder="কন্টাক্টের ইংরেজি নাম">
-            </div>
-            <div class="input-group">
-                <label for="editContactNumbers">মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label>
-                <input type="text" id="editContactNumbers" placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy">
-            </div>
-            <div class="input-group">
-                <label for="editContactEmail">ইমেইল:</label>
-                <input type="email" id="editContactEmail" placeholder="উদাহরণ: name@example.com">
-            </div>
-            <div class="input-group">
-                <label for="editContactAddress">ঠিকানা:</label>
-                <input type="text" id="editContactAddress" placeholder="কন্টাক্টের ঠিকানা">
-            </div>
-            <div class="modal-buttons">
-                <button onclick="saveEdit()">সংরক্ষণ করুন</button>
-                <button onclick="closeEditModal()">বাতিল</button>
-            </div>
+      <div class="modal-content">
+        <h2>কন্টাক্ট এডিট করুন</h2>
+        <div class="input-group">
+          <label for="editContactName">নাম (বাংলায়):</label>
+          <input
+            type="text"
+            id="editContactName"
+            placeholder="কন্টাক্টের বাংলা নাম"
+          />
         </div>
+        <div class="input-group">
+          <label for="editContactEnglishName">নাম (ইংরেজিতে):</label>
+          <input
+            type="text"
+            id="editContactEnglishName"
+            placeholder="কন্টাক্টের ইংরেজি নাম"
+          />
+        </div>
+        <div class="input-group">
+          <label for="editContactNumbers"
+            >মোবাইল নাম্বার (কমা দিয়ে একাধিক নম্বর দিন):</label
+          >
+          <input
+            type="text"
+            id="editContactNumbers"
+            placeholder="উদাহরণ: 017xxxxxxxx, 018yyyyyyyy"
+          />
+        </div>
+        <div class="input-group">
+          <label for="editContactEmail">ইমেইল:</label>
+          <input
+            type="email"
+            id="editContactEmail"
+            placeholder="উদাহরণ: name@example.com"
+          />
+        </div>
+        <div class="input-group">
+          <label for="editContactAddress">ঠিকানা:</label>
+          <input
+            type="text"
+            id="editContactAddress"
+            placeholder="কন্টাক্টের ঠিকানা"
+          />
+        </div>
+        <div class="modal-buttons">
+          <button onclick="saveEdit()">সংরক্ষণ করুন</button>
+          <button onclick="closeEditModal()">বাতিল</button>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Start of provided contact data
-        let contacts = JSON.parse(localStorage.getItem('contacts')) || [
-            {"name":"Tai","englishName":"Tai","numbers":["+8801757435049"]},
-            {"name":"No Word","englishName":"No Word","numbers":["+8801314722542"]},
-            {"name":"5000 Taka","englishName":"5000 Taka","numbers":["+8801715621365"]},
-            {"name":"71Worker","englishName":"71Worker","numbers":["+8801872397445"]},
-            {"name":"Aaaa","englishName":"Aaaa","numbers":["+855 87 465 384"]},
-            {"name":"AAcount","englishName":"AAcount","numbers":["1-211-00"]},
-            {"name":"Abbu","englishName":"Abbu","numbers":["017-015-27027"]},
-            {"name":"abdul Hai Er","englishName":"abdul Hai Er","numbers":["+8801798017608"]},
-            {"name":"Abdul Hai Membar","englishName":"Abdul Hai Membar","numbers":["017-273-52162"]},
-            {"name":"Abdul Hi","englishName":"Abdul Hi","numbers":["+880 1888-571521"]},
-            {"name":"Abdulla","englishName":"Abdulla","numbers":["+8801317297159"]},
-            {"name":"Abul","englishName":"Abul","numbers":["+8801767896215", "+8801789035794"]},
-            {"name":"Abul Hasan","englishName":"Abul Hasan","numbers":["+966571640726"]},
-            {"name":"Add....","englishName":"Add....","numbers":["018-257-64983"]},
-            {"name":"ADDEL","englishName":"ADDEL","numbers":["+97333520217"]},
-            {"name":"Adnan","englishName":"Adnan","numbers":["015-900-96286", "+880 1862-633745", "+880 1744-877880"]},
-            {"name":"Afa","englishName":"Afa","numbers":["017-196-06971"]},
-            {"name":"Afroja","englishName":"Afroja","numbers":["+8801784525018", "+8801518345104"]},
-            {"name":"agent 9 Wc","englishName":"agent 9 Wc","numbers":["+8801714446799"]},
-            {"name":"Agent 9 Wct","englishName":"Agent 9 Wct","numbers":["017-932-37333"]},
-            {"name":"agent","englishName":"agent","numbers":["019-158-18120"]},
-            {"name":"agent Fack","englishName":"agent Fack","numbers":["017-636-62816"]},
-            {"name":"Agent","englishName":"Agent","numbers":["+60142292707"]},
-            {"name":"Ahasan","englishName":"Ahasan","numbers":["+880 1724-493233"]},
-            {"name":"Aj Year","englishName":"Aj Year","numbers":["017-142-55074"]},
-            {"name":"Akash","englishName":"Akash","numbers":["+442070974844"]},
-            {"name":"Akhi","englishName":"Akhi","numbers":["014-075-42420"]},
-            {"name":"Akkas","englishName":"Akkas","numbers":["+8801751683234"]},
-            {"name":"Akmal","englishName":"Akmal","numbers":["+8801748991899"]},
-            {"name":"Akram","englishName":"Akram","numbers":["017-954-53704"]},
-            {"name":"Akramul","englishName":"Akramul","numbers":["+8801977549645"]},
-            {"name":"Akramul Vai","englishName":"Akramul Vai","numbers":["017-393-68706"]},
-            {"name":"Al aman","englishName":"Al aman","numbers":["+8801792407547"]},
-            {"name":"Al amin","englishName":"Al amin","numbers":["+8801714752336"]},
-            {"name":"Al","englishName":"Al","numbers":["016-282-98522"]},
-            {"name":"Al-Amin","englishName":"Al-Amin","numbers":["+8801758714707", "013-044-94102"]},
-            {"name":"ali Akbar Bai","englishName":"ali Akbar Bai","numbers":["017-125-19377"]},
-            {"name":"Ali","englishName":"Ali","numbers":["+880 1403-979330"]},
-            {"name":"Aliyabad","englishName":"Aliyabad","numbers":["+8801322161704"]},
-            {"name":"almas","englishName":"almas","numbers":["017-164-23871"]},
-            {"name":"Almas Vai","englishName":"Almas Vai","numbers":["+8801958124809"]},
-            {"name":"Alom Singar","englishName":"Alom Singar","numbers":["+8801928796426"]},
-            {"name":"Alomgir","englishName":"Alomgir","numbers":["+8801739276434"]},
-            {"name":"Amar Ma","englishName":"Amar Ma","numbers":["017-200-50460"]},
-            {"name":"Ami","englishName":"Ami","numbers":["019-204-40907"]},
-            {"name":"Amin Kha..mim","englishName":"Amin Kha..mim","numbers":["017-594-69234"]},
-            {"name":"Ammo","englishName":"Ammo","numbers":["+8801638027560"]},
-            {"name":"Amzad","englishName":"Amzad","numbers":["019-256-12428"]},
-            {"name":"Anamnul Fnd Polli","englishName":"Anamnul Fnd Polli","numbers":["017-789-05442"]},
-            {"name":"Anowar","englishName":"Anowar","numbers":["017-259-85598"]},
-            {"name":"Anower","englishName":"Anower","numbers":["+8801707157568"]},
-            {"name":"Anupum vai","englishName":"Anupum vai","numbers":["+8801928116456"]},
-            {"name":"apu","englishName":"apu","numbers":["017-871-80774"]},
-            {"name":"Arafat","englishName":"Arafat","numbers":["015-184-22219", "+880 1305-299883"]},
-            {"name":"Arif","englishName":"Arif","numbers":["017-951-08641", "+8801719876140"]},
-            {"name":"arif Vai","englishName":"arif Vai","numbers":["+8801765864149"]},
-            {"name":"Arifa","englishName":"Arifa","numbers":["+8801748750548", "+880 1577-024225", "017-120-99833"]},
-            {"name":"Arifa islam","englishName":"Arifa islam","numbers":["+8801638027560"]},
-            {"name":"Arifa Nanu","englishName":"Arifa Nanu","numbers":["+8801905393168"]},
-            {"name":"Arifar Ammu","englishName":"Arifar Ammu","numbers":["015-183-91408"]},
-            {"name":"Arifujjaman","englishName":"Arifujjaman","numbers":["017-548-53812"]},
-            {"name":"Ark","englishName":"Ark","numbers":["+880 1312-618715"]},
-            {"name":"Asad Beparir","englishName":"Asad Beparir","numbers":["+8801313236648"]},
-            {"name":"Aslam Fnd","englishName":"Aslam Fnd","numbers":["017-719-91057"]},
-            {"name":"Aslam Vai","englishName":"Aslam Vai","numbers":["017-720-82826"]},
-            {"name":"Asraf Vai Tils","englishName":"Asraf Vai Tils","numbers":["018-492-80500"]},
-            {"name":"At","englishName":"At","numbers":["013-017-54154"]},
-            {"name":"Atik","englishName":"Atik","numbers":["017-451-83077", "017-847-59082", "014-000-87341"]},
-            {"name":"Atkm","englishName":"Atkm","numbers":["+8801991168680"]},
-            {"name":"Aunty Akramuler","englishName":"Aunty Akramuler","numbers":["017-166-81733"]},
-            {"name":"Ayan Khan","englishName":"Ayan Khan","numbers":["+855 96 301 9756"]},
-            {"name":"Aysha Nid Sobulla Sikkda","englishName":"Aysha Nid Sobulla Sikkda","numbers":["018-379-98271"]},
-            {"name":"Azad","englishName":"Azad","numbers":["+8801312287523"]},
-            {"name":"Azad Vai","englishName":"Azad Vai","numbers":["018-174-89653"]},
-            {"name":"aziarat327","englishName":"aziarat327","numbers":["+966 53 326 1164"]},
-            {"name":"Aziz","englishName":"Aziz","numbers":["+96560492921", "+96566278780"]},
-            {"name":"Baba New","englishName":"Baba New","numbers":["017-830-84362"]},
-            {"name":"babul","englishName":"babul","numbers":["017-145-86833"]},
-            {"name":"Badsa","englishName":"Badsa","numbers":["+8801732516515"]},
-            {"name":"Badsa Kaka","englishName":"Badsa Kaka","numbers":["+880 1739-221828"]},
-            {"name":"Badsha","englishName":"Badsha","numbers":["+855 81 998 524"]},
-            {"name":"Bari Ala","englishName":"Bari Ala","numbers":["017-533-03241"]},
-            {"name":"Basar","englishName":"Basar","numbers":["017-214-03886", "017-584-98171"]},
-            {"name":"basar Vai Dilar","englishName":"basar Vai Dilar","numbers":["+880 1956-670083"]},
-            {"name":"basar Vai","englishName":"basar Vai","numbers":["880-174-0908388"]},
-            {"name":"Bill Vai","englishName":"Bill Vai","numbers":["+880 1751-542987"]},
-            {"name":"Billal Member","englishName":"Billal Member","numbers":["017-404-18694"]},
-            {"name":"Billal Vai New Matrittokalin Tania Akter","englishName":"Billal Vai New Matrittokalin Tania Akter","numbers":["017-870-74258"]},
-            {"name":"Bkash","englishName":"Bkash","numbers":["018-393-19352"]},
-            {"name":"Black Boy","englishName":"Black Boy","numbers":["+966572281623"]},
-            {"name":"Bmmp","englishName":"Bmmp","numbers":["018-688-43627"]},
-            {"name":"Bolod","englishName":"Bolod","numbers":["017-795-18208"]},
-            {"name":"Bow","englishName":"Bow","numbers":["+8801784572845"]},
-            {"name":"Bro","englishName":"Bro","numbers":["+8801794001566"]},
-            {"name":"BRTA","englishName":"BRTA","numbers":["+880 1718-290844"]},
-            {"name":"Call Dite","englishName":"Call Dite","numbers":["017-154-77678"]},
-            {"name":"Cd","englishName":"Cd","numbers":["+8801401424166"]},
-            {"name":"Chan Mia","englishName":"Chan Mia","numbers":["+8801741556400"]},
-            {"name":"Char Billal","englishName":"Char Billal","numbers":["+880 1840-982594"]},
-            {"name":"Char Emarot bike","englishName":"Char Emarot bike","numbers":["+8801781921201"]},
-            {"name":"Char Farok","englishName":"Char Farok","numbers":["+8801745691742"]},
-            {"name":"char Khoka","englishName":"char Khoka","numbers":["017-262-66172"]},
-            {"name":"char Masud","englishName":"char Masud","numbers":["+8801712333571"]},
-            {"name":"Char Sifat","englishName":"Char Sifat","numbers":["+8801330673491"]},
-            {"name":"Char Sohidul Vai","englishName":"Char Sohidul Vai","numbers":["013-045-02855"]},
-            {"name":"Charbhadrasan Subzonal Office Agm","englishName":"Charbhadrasan Subzonal Office Agm","numbers":["+880 1704-108988"]},
-            {"name":"Choto Ammo","englishName":"Choto Ammo","numbers":["+8801580988327"]},
-            {"name":"Choto","englishName":"Choto","numbers":["+8801770413695"]},
-            {"name":"Chr","englishName":"Chr","numbers":["+8801729505125", "+8801511929406", "+880 1734-188265"]},
-            {"name":"Chr family","englishName":"Chr family","numbers":["+8801575750806"]},
-            {"name":"Chr jahangir","englishName":"Chr jahangir","numbers":["+880 1715-696325"]},
-            {"name":"Chr M-","englishName":"Chr M-","numbers":["+8801789535517"]},
-            {"name":"Chr M1","englishName":"Chr M1","numbers":["+8801760782188"]},
-            {"name":"Chr Manik PIO","englishName":"Chr Manik PIO","numbers":["+880 1746-051330"]},
-            {"name":"chr Membar k 8 No","englishName":"chr Membar k 8 No","numbers":["+8801725430611"]},
-            {"name":"Chr OCLD","englishName":"Chr OCLD","numbers":["+880 1721-873151"]},
-            {"name":"Chr Sehab Khan Sikkha Officer Tag","englishName":"Chr Sehab Khan Sikkha Officer Tag","numbers":["+880 1719-699870"]},
-            {"name":"Chr Siddik","englishName":"Chr Siddik","numbers":["+8801777912015", "+880 1595-065376"]},
-            {"name":"Chr Subhan","englishName":"Chr Subhan","numbers":["+8801734188265"]},
-            {"name":"Chunnu","englishName":"Chunnu","numbers":["+966 54 249 3563"]},
-            {"name":"Chunnu Vai","englishName":"Chunnu Vai","numbers":["+97333517681"]},
-            {"name":"Cn Sorbandia","englishName":"Cn Sorbandia","numbers":["+8801318616236"]},
-            {"name":"Computer","englishName":"Computer","numbers":["017-151-94774"]},
-            {"name":"Cordial","englishName":"Cordial","numbers":["+8801709273855"]},
-            {"name":"Cricket","englishName":"Cricket","numbers":["014-019-04915", "018-132-55259"]},
-            {"name":"D S B Alim Vai","englishName":"D S B Alim Vai","numbers":["017-124-49901"]},
-            {"name":"Dablu","englishName":"Dablu","numbers":["017-259-75789"]},
-            {"name":"Dada","englishName":"Dada","numbers":["017-900-69669"]},
-            {"name":"Dalima","englishName":"Dalima","numbers":["+880 1305-939181"]},
-            {"name":"DALO","englishName":"DALO","numbers":["017-870-76375"]},
-            {"name":"daloar","englishName":"daloar","numbers":["009-689-1889892"]},
-            {"name":"Damion","englishName":"Damion","numbers":["+8801933129583"]},
-            {"name":"Danes","englishName":"Danes","numbers":["003-938-94537139", "+393894537139"]},
-            {"name":"Daraz","englishName":"Daraz","numbers":["+8801779335757"]},
-            {"name":"Dc Of","englishName":"Dc Of","numbers":["+880 1729-334048"]},
-            {"name":"Ddd","englishName":"Ddd","numbers":["013-018-04613"]},
-            {"name":"Ddddd","englishName":"Ddddd","numbers":["017-159-54906"]},
-            {"name":"Deloar Molla A","englishName":"Deloar Molla A","numbers":["019-248-89181"]},
-            {"name":"Dia","englishName":"Dia","numbers":["018-638-78925"]},
-            {"name":"Didar Vai","englishName":"Didar Vai","numbers":["+96566296954"]},
-            {"name":"Didar","englishName":"Didar","numbers":["009-659-6695607"]},
-            {"name":"Difenc","englishName":"Difenc","numbers":["+8801700666245"]},
-            {"name":"Dinslam","englishName":"Dinslam","numbers":["018-892-93240"]},
-            {"name":"Dipto","englishName":"Dipto","numbers":["+8801617179809"]},
-            {"name":"Dipu","englishName":"Dipu","numbers":["+8801715150086"]},
-            {"name":"Dokan","englishName":"Dokan","numbers":["+8801314680515"]},
-            {"name":"Douasa","englishName":"Douasa","numbers":["013-198-48798"]},
-            {"name":"Dsb Ikbal Sir Char","englishName":"Dsb Ikbal Sir Char","numbers":["+880 1748-589306"]},
-            {"name":"Dsb Rezaul Sir","englishName":"Dsb Rezaul Sir","numbers":["017-209-22147"]},
-            {"name":"Dukan","englishName":"Dukan","numbers":["017-971-75010"]},
-            {"name":"Dukandar","englishName":"Dukandar","numbers":["+8801736853673"]},
-            {"name":"E Ten","englishName":"E Ten","numbers":["016-418-69079"]},
-            {"name":"Edris Vai","englishName":"Edris Vai","numbers":["+8801618763235"]},
-            {"name":"Emon Choto Vai Imran","englishName":"Emon Choto Vai Imran","numbers":["013-165-77749"]},
-            {"name":"Emon","englishName":"Emon","numbers":["013-334-54347"]},
-            {"name":"Emran Kolija","englishName":"Emran Kolija","numbers":["+8801765489978"]},
-            {"name":"Emran Vai","englishName":"Emran Vai","numbers":["017-654-89978"]},
-            {"name":"Emtiyaj","englishName":"Emtiyaj","numbers":["+8801729169820"]},
-            {"name":"Ensana Vabi","englishName":"Ensana Vabi","numbers":["017-688-01339"]},
-            {"name":"Ensana Vabi Robi","englishName":"Ensana Vabi Robi","numbers":["018-562-77585"]},
-            {"name":"Ersader","englishName":"Ersader","numbers":["+8801728234614"]},
-            {"name":"Esmotara Nid","englishName":"Esmotara Nid","numbers":["+8801740765515"]},
-            {"name":"Eye","englishName":"Eye","numbers":["+8801864198112"]},
-            {"name":"face wash","englishName":"face wash","numbers":["018-202-24991"]},
-            {"name":"Fahad","englishName":"Fahad","numbers":["017-294-61378"]},
-            {"name":"FAHIM","englishName":"FAHIM","numbers":["017-224-39652"]},
-            {"name":"Faijul","englishName":"Faijul","numbers":["+8801308935757"]},
-            {"name":"Falu","englishName":"Falu","numbers":["+8801732169798"]},
-            {"name":"farhan","englishName":"farhan","numbers":["+8801765674161"]},
-            {"name":"Farhan","englishName":"Farhan","numbers":["019-993-81361"]},
-            {"name":"Farid Biay","englishName":"Farid Biay","numbers":["+8801760586516"]},
-            {"name":"Farid","englishName":"Farid","numbers":["017-273-55999"]},
-            {"name":"Farid Vai","englishName":"Farid Vai","numbers":["+8801753305288"]},
-            {"name":"Faridpur","englishName":"Faridpur","numbers":["+8801712434377"]},
-            {"name":"Faroj","englishName":"Faroj","numbers":["+8801783422714"]},
-            {"name":"Farok","englishName":"Farok","numbers":["880-174-8501692"]},
-            {"name":"Farok Vai","englishName":"Farok Vai","numbers":["017-569-01152"]},
-            {"name":"Faruk Vai","englishName":"Faruk Vai","numbers":["+8801725945359"]},
-            {"name":"ferdousi Matrittokalin","englishName":"ferdousi Matrittokalin","numbers":["+8801334528235"]},
-            {"name":"Firoj Vai North","englishName":"Firoj Vai North","numbers":["+8801712803170"]},
-            {"name":"Firuj Vai","englishName":"Firuj Vai","numbers":["017-128-03170", "017-110-59179"]},
-            {"name":"Foisal Agent","englishName":"Foisal Agent","numbers":["+8801718128848"]},
-            {"name":"Fojlo","englishName":"Fojlo","numbers":["+8801300728190"]},
-            {"name":"Food Office","englishName":"Food Office","numbers":["017-135-94689"]},
-            {"name":"Food Officer","englishName":"Food Officer","numbers":["017-374-88211"]},
-            {"name":"Food","englishName":"Food","numbers":["017-127-34284"]},
-            {"name":"Fopu","englishName":"Fopu","numbers":["+8801709829307"]},
-            {"name":"Forhad","englishName":"Forhad","numbers":["+8801329544555"]},
-            {"name":"Forhad Sir","englishName":"Forhad Sir","numbers":["+8801708392487"]},
-            {"name":"Forhad Vai","englishName":"Forhad Vai","numbers":["017-193-93868"]},
-            {"name":"Foysal Vai Cox","englishName":"Foysal Vai Cox","numbers":["018-196-40291"]},
-            {"name":"Gari Malik","englishName":"Gari Malik","numbers":["+8801761980877"]},
-            {"name":"Gm raju","englishName":"Gm raju","numbers":["+8801921268748"]},
-            {"name":"Gojariya","englishName":"Gojariya","numbers":["018-853-7642"]},
-            {"name":"Selim Uncle Bl Jfp","numbers":["019-259-74324"]},
-            {"name":"Moni Vabi","numbers":["+8801312140646"]},
-            {"name":"Momin Vai Kushtia","numbers":["018-268-26583", "+8801749222920"]},
-            {"name":"Mondol","numbers":["+8801408922027"]},
-            {"name":"Moner Sar","numbers":["017-453-30270"]},
-            {"name":"Moni Mukta","numbers":["+8801752196847"],"email":"mdrajuahamed.4321@gmail.com"},
-            {"name":"Monir","numbers":["+8801781243713"]},
-            {"name":"Monir Jumadar","numbers":["+8801776777971", "880-133-0674448", "+8801328390088", "016-464-90054"]},
-            {"name":"Monir Kaka Gp","numbers":["+8801314020660"]},
-            {"name":"Monir Kaka","numbers":["01710-403737", "+8801744744247"]},
-            {"name":"Monir Sar","numbers":["017-453-30270"]},
-            {"name":"Monir Vai","numbers":["+8801317799046"]},
-            {"name":"Monirul Islam","numbers":["+8801317762774"]},
-            {"name":"Moniruzzaman Sawan","numbers":["+8801725798912"],"email":"moniruzzamansawon36@gmail.com","address":"Surjasen hall, Dhaka University, Bangladesh"},
-            {"name":"Moriom Dada","numbers":["016-871-29913"]},
-            {"name":"Mosarof Kaka","numbers":["+8801746291943"]},
-            {"name":"Mosior","numbers":["017-627-00476"]},
-            {"name":"Mostofa Vai","numbers":["+8801676899031", "+8801554477258"]},
-            {"name":"Motin Vai","numbers":["+8801738121103"]},
-            {"name":"Moudud Vai Uno","numbers":["017-151-67366"]},
-            {"name":"Mozammel","numbers":["+966530093389"]},
-            {"name":"Msh","numbers":["+8801779026113"]},
-            {"name":"Mst Eti Akter votar+nid 3 K Pabo","numbers":["+8801615803715"]},
-            {"name":"Muhamad M Char","numbers":["+8801717682304"]},
-            {"name":"Mujaffor Kaka","numbers":["017-887-06299"]},
-            {"name":"Mujahid Mridha","numbers":["+8801316414308"]},
-            {"name":"Mujahid Vai","numbers":["017-655-80384"]},
-            {"name":"Muka Mridha Bkash","numbers":["017-997-04032"]},
-            {"name":"Mukta Vabi","numbers":["+8801785732480"]},
-            {"name":"Munna","numbers":["016-296-95168"]},
-            {"name":"Munnaf Call Dite Hobe","numbers":["+8801764301693"]},
-            {"name":"Murad Vai","numbers":["+8801759924516"]},
-            {"name":"Musa Doirampur","numbers":["018-749-26207"]},
-            {"name":"Musarof Vai","numbers":["017-118-04826"]},
-            {"name":"Musfiqur Rahman","numbers":["+8801849689644"]},
-            {"name":"Muslem Vai Nid","numbers":["+8801736295936"]},
-            {"name":"Muzahid Hossain","numbers":["+8801704452616"]},
-            {"name":"my 71 BKash Pin","numbers":["19761"]},
-            {"name":"My Brilliant Number","numbers":["+8809638934255"]},
-            {"name":"Najmul Vai Dukan","numbers":["017-451-87611"]},
-            {"name":"Nasir Vai Police","numbers":["017-190-31265"]},
-            {"name":"Nayem Mia","numbers":["+8801728290201"]},
-            {"name":"Nazmul Doirampur","numbers":["013-245-50658"]},
-            {"name":"Nazmul Huda","numbers":["017-722-17575"]},
-            {"name":"Nazmul Namajermat","numbers":["+8801931398012"]},
-            {"name":"Nazmul Rony","numbers":["+8801750094729"]},
-            {"name":"Nazmul Vai Sorbandia","numbers":["017-420-41367"]},
-            {"name":"Nid Abul Hasem","numbers":["+8801313935890"]},
-            {"name":"Nid Carrr","numbers":["+8801781499299"]},
-            {"name":"Nid Char 4","numbers":["+8801752719890"]},
-            {"name":"Nid correction","numbers":["01581-039328"]},
-            {"name":"Nid Rasel","numbers":["013-117-40574"]},
-            {"name":"Nid Sabbir","numbers":["01320-723243"]},
-            {"name":"Nid Selina+jhorna Baba","numbers":["+8801727071016"]},
-            {"name":"Nid Vai","numbers":["017-739-89746"]},
-            {"name":"Nid.com.bd","numbers":["+8801747987917"]},
-            {"name":"Nijam Mirda","numbers":["017-158-69024"]},
-            {"name":"Nilima Nid Verified","numbers":["+8801310731364"]},
-            {"name":"Nisad Vai Ngo","numbers":["017-947-82446"]},
-            {"name":"Noiyon","numbers":["013-092-83551"]},
-            {"name":"Noyon","numbers":["+8801920950176"]},
-            {"name":"Noyon Gp","numbers":["017-299-56525"]},
-            {"name":"Noyon Vai","numbers":["017-147-79882"]},
-            {"name":"NRP","numbers":["+601123673724"]},
-            {"name":"Nur Islam Vai Kisnopur","numbers":["01720-629743"]},
-            {"name":"Nuru Kaka Mekani","numbers":["016-421-42419", "017-470-16507"]},
-            {"name":"Nuzrul Vai","numbers":["019-595-56867"]},
-            {"name":"O Bibahito Sonod Potro","numbers":["+8801748267303"]},
-            {"name":"Obaidol Vai","numbers":["017-366-45521"]},
-            {"name":"Obaidur Jumaddar","numbers":["+8801707157570"]},
-            {"name":"Obaidur Vai BKash 3k","numbers":["017-158-68137"]},
-            {"name":"Okup Officer","numbers":["+8801868588215"]},
-            {"name":"Omr","numbers":["+8801731153578"]},
-            {"name":"Onita","numbers":["013-150-36717"]},
-            {"name":"Onita Akter","numbers":["013-002-63349"]},
-            {"name":"Osman","numbers":["009-656-0660412"]},
-            {"name":"OTUL","numbers":["017-206-80987"]},
-            {"name":"Pagol","numbers":["+8801732283118", "017-908-78401"]},
-            {"name":"paikari Bazar","numbers":["+8801839390492"]},
-            {"name":"Pailing Mistry","numbers":["+8801771967822"]},
-            {"name":"pannu Fakir","numbers":["017-466-85737"]},
-            {"name":"Pannu Kaka","numbers":["017-163-62937"]},
-            {"name":"Par","numbers":["+8801766299739"]},
-            {"name":"Parvezz","numbers":["+8801576454961"]},
-            {"name":"Pasha","numbers":["017-323-24479"]},
-            {"name":"Pbg Tajul","numbers":["017-121-43860"]},
-            {"name":"Roni Vai Mullar Dangi","numbers":["+8801701724504"]},
-            {"name":"Ronjon Thakur","numbers":["+8801740418499"]},
-            {"name":"Ronye","numbers":["017-007-65094"]},
-            {"name":"Ros Mama","numbers":["+8801723798908"]},
-            {"name":"Roson Ali","numbers":["+8801715676560"]},
-            {"name":"Rosul Mestet Bazar","numbers":["017-070-23533"]},
-            {"name":"Rotn khan","numbers":["017-432-81180"]},
-            {"name":"Royal Kofi","numbers":["+8801961841838"]},
-            {"name":"Rpmon","numbers":["019-341-88298"]},
-            {"name":"Rrr","numbers":["017-458-95674"]},
-            {"name":"Rubel Friend","numbers":["013-182-17054"]},
-            {"name":"Rubel Hossen","numbers":["+8801798340312"]},
-            {"name":"Rubel Vai Cmn","numbers":["013-207-69206"]},
-            {"name":"Rubel Vai Dukan","numbers":["014-000-87250"]},
-            {"name":"Rubel Vai Tren","numbers":["+8801742353463"]},
-            {"name":"Rubiya Akter","numbers":["+8801856547956"]},
-            {"name":"Ruhol Amin Choto","numbers":["+8801779339746"]},
-            {"name":"Ruma Apa","numbers":["017-654-37516"]},
-            {"name":"Ruma Apu","numbers":["017-144-12332"]},
-            {"name":"Ruma Matrittokalin","numbers":["+8801610442828"]},
-            {"name":"Sab","numbers":["No phone number provided"]},
-            {"name":"Sabbir Dost","numbers":["+8801576727442"]},
-            {"name":"Sabbir Kaka","numbers":["016-244-74025", "+8801792962387"]},
-            {"name":"Sabbir Khalek Bazar New","numbers":["+8801703959959"]},
-            {"name":"Sabbir Vai Khalek Bazar","numbers":["+8801756751510"]},
-            {"name":"sabbirmd47931","numbers":["+8801922292385"]},
-            {"name":"Sabina Husband Sourov Matrittokalin","numbers":["+8801797584453"]},
-            {"name":"sabina Matrittokalin+nid","numbers":["017-342-57759"]},
-            {"name":"Sabina Nid","numbers":["+8801329143297"]},
-            {"name":"Sabro Bkash","numbers":["013-088-42535"]},
-            {"name":"Sad","numbers":["+8801618513301"]},
-            {"name":"Sadek Choto Vai","numbers":["+8801406964305"]},
-            {"name":"Sadu","numbers":["013-108-79476"]},
-            {"name":"Sagediul khan","numbers":["+8801716203803"]},
-            {"name":"Sagor Friend","numbers":["017-545-98916"]},
-            {"name":"Sagor Hasan","numbers":["+8801783755595"]},
-            {"name":"Sagor Nibondon","numbers":["+8801770181310"]},
-            {"name":"Sagor vai m","numbers":["+8801932535711"]},
-            {"name":"Sagorika Apu","numbers":["018-756-45379", "+8801302780814"]},
-            {"name":"Sahadat Vai","numbers":["017-159-62727", "017-135-85263", "019-117-86216"]},
-            {"name":"Sahariya Arojkhar Dangi","numbers":["017-580-56065"]},
-            {"name":"Saheda Akter","numbers":["013-043-40107"]},
-            {"name":"Saheda Apa","numbers":["+8801746633340"]},
-            {"name":"Sahid Vai.","numbers":["017-944-13689"]},
-            {"name":"Sahin Vai","numbers":["+8801775237178"]},
-            {"name":"Saidul Vai","numbers":["+966571440975"]},
-            {"name":"Saifuddin Vai","numbers":["009-665-04179036"]},
-            {"name":"Saim Vai Udc","numbers":["+8801712345225"]},
-            {"name":"Sajahan Parul","numbers":["017-336-92415"]},
-            {"name":"Sajeda Akter Caina Matrittokalin Contac","numbers":["+8801782856755"]},
-            {"name":"Sajek Murad Vai","numbers":["016-405-63201"]},
-            {"name":"Sakat Vai","numbers":["009-665-55472130", "+8801333649164", "+8801736749717"]},
-            {"name":"sakathoaasin","numbers":["+96594717283"]},
-            {"name":"Salam Kaka","numbers":["017-289-93563"]},
-            {"name":"Salauddin Nirbacon Office","numbers":["017-227-89197"]},
-            {"name":"salepur Char","numbers":["+8801949493388"]},
-            {"name":"Salim Vai","numbers":["009-660-532979438", "016-191-71380"]},
-            {"name":"Salina F","numbers":["017-923-96773"]},
-            {"name":"Sam Agent","numbers":["+60142292592"]},
-            {"name":"samim Hasan","numbers":["009-715-43037062"]},
-            {"name":"Samim Reja","numbers":["017-535-74002"]},
-            {"name":"Samim Reza","numbers":["017-448-38740"]},
-            {"name":"Samima","numbers":["+8801736344786"]},
-            {"name":"Samol Web Page","numbers":["+8801823036288"]},
-            {"name":"sangbadik","numbers":["+8801911917448", "+8801711589242"]},
-            {"name":"Sanjida Akter Chaina Matrittokalin BKash","numbers":["017-917-24742"]},
-            {"name":"Sarvar Copy","numbers":["01330-202110"]},
-            {"name":"Sattar Vai Secretary","numbers":["+8801731137750"]},
-            {"name":"Sawon","numbers":["+8801703979840"]},
-            {"name":"Sayma Akter Mahi","numbers":["+8801325398440"]},
-            {"name":"Sd Anowar Com","numbers":["+8801726840636", "+8801787576785"]},
-            {"name":"Sec Lablu 3","numbers":["+8801795310105"]},
-            {"name":"Sec Nikhil Da Char Bhadrason","numbers":["019-370-63858"]},
-            {"name":"Sefali Matrittokalin","numbers":["+8801798406501"]},
-            {"name":"Sek Soleman","numbers":["017-449-66584"]},
-            {"name":"Sekandar Vai","numbers":["017-451-17216"]}
-            {"name":"Selim Vai","numbers":["+8801840126501", "+8801762308888", "966593139509"]},
-            {"name":"Selina Akter Matrittokalin","numbers":["+8801794164442"]},
-            {"name":"Sentur Bow","numbers":["+8801758475271"]},
-            {"name":"Shafikul Islam Db Faridpur","numbers":["+8801722845722"],"email":"a1722845722@gmail.com"},
-            {"name":"Shahariya Arojkhar Dangi","numbers":["013-342-11367"]},
-            {"name":"Shahidul Islam Udc","numbers":["+8801715935459"]},
-            {"name":"Shahin Vai. Mostofa Kobir","numbers":["018-821-04124"]},
-            {"name":"Shakib","numbers":["013-017-54154", "+8801888224039", "013-103-74931"]},
-            {"name":"Shakil Bondu Bkash","numbers":["017-866-55922"]},
-            {"name":"Shakil Molla Matrittokalin Vata","numbers":["+8801595065359"]},
-            {"name":"Shakil Vai","numbers":["016-298-81968"]},
-            {"name":"Shakila Apu Bkash","numbers":["017-868-68308"]},
-            {"name":"Shamim Dhaka","numbers":["+8801928916475"]},
-            {"name":"Shamim Freelancer","numbers":["+971554380250"]},
-            {"name":"Sharmin Fnd","numbers":["014-075-12077"]},
-            {"name":"Sheik Sahin Khalpar Nid","numbers":["+8801762489228"]},
-            {"name":"Sheik Sojib","numbers":["+8801780350199"]},
-            {"name":"Sheikh Al Amin Vai","numbers":["+971586207125"]},
-            {"name":"Shiab Ru","numbers":["+8801568831935"]},
-            {"name":"Shimul Friend","numbers":["+8801315353253"]},
-            {"name":"SHISHIR","numbers":["+8801782828853"]},
-            {"name":"Shohidul Vai","numbers":["+8801777544649", "+971563950099"]},
-            {"name":"Shopee","numbers":["+8801753937342"]},
-            {"name":"Shuvo Vai Diu","numbers":["+8801672429953"]},
-            {"name":"Si Probin Sir","numbers":["+8801724198671"]},
-            {"name":"Sif","numbers":["+966504179036"]},
-            {"name":"Sila Apa Nirbachon Office","numbers":["017-975-38608"]},
-            {"name":"Silpi Matrittokalin Potua ntk 4200","numbers":["+8801795092454"]},
-            {"name":"Sima","numbers":["009-627-85466712"]},
-            {"name":"Sima Akter Matrittokalin 4%","numbers":["+8801323531648"]},
-            {"name":"Sir V","numbers":["+601123411725", "006-011-23411725"]},
-            {"name":"Siraj Vai","numbers":["013-236-34686"]},
-            {"name":"Sk Kanon","numbers":["+8801781826165"]},
-            {"name":"Sk Nirob","numbers":["+8801733450309"]},
-            {"name":"sk Raj","numbers":["+8801728021814"]},
-            {"name":"Skb","numbers":["013-093-57207"]},
-            {"name":"Sksk","numbers":["017-630-00095"]},
-            {"name":"Sofi Molla","numbers":["017-953-12260"]},
-            {"name":"Sofik Vai Charmen","numbers":["+8801407100362"]},
-            {"name":"Sohag Vai","numbers":["017-199-80716"]},
-            {"name":"Sohel Kaka Beparirdukan","numbers":["017-523-50612"]},
-            {"name":"Sohel Nid","numbers":["+8801721230264"]},
-            {"name":"Sohid Jorna Kaka Nid","numbers":["+8801607248906"]},
-            {"name":"Sohid Vai Aliyabad Dofadar BKash","numbers":["016-216-00246"]},
-            {"name":"SOHIDUL VAI","numbers":["+8801304502855"]},
-            {"name":"Sohidul Member","numbers":["+8801760309219"]},
-            {"name":"sohidul Islam Char","numbers":["013-248-46151"]},
-            {"name":"Sojib Elaka","numbers":["017-667-11933"]},
-            {"name":"sojib Friend","numbers":["880-184-3937243"]},
-            {"name":"Sojib mobile","numbers":["019-623-06743"]},
-            {"name":"Sojib namajer","numbers":["+8801765733653"]},
-            {"name":"Sokanto Vai Nirbachon Office.","numbers":["+8801920643803"]},
-            {"name":"Somajseba Habib Vai","numbers":["+8801890223888"]},
-            {"name":"Somajseba Vai","numbers":["016-872-28549"]},
-            {"name":"somir Bepari","numbers":["+8801732324905"]},
-            {"name":"Sompa Vabi","numbers":["017-727-92430"]},
-            {"name":"Sonod.com.bd","numbers":["017-447-69331"]},
-            {"name":"Sopon Bondu","numbers":["+8801812121849"]},
-            {"name":"Sopon Friend Khalpar","numbers":["+8801309544893"]},
-            {"name":"Sopon Kaka","numbers":["+8801689684771"]},
-            {"name":"Sorif Boswas Vajondanga","numbers":["+8801721684947"]},
-            {"name":"Soriful Islam Sir","numbers":["017-145-62616"]},
-            {"name":"sorik Daroga","numbers":["018-511-66758"]},
-            {"name":"Soukot Vai","numbers":["+8801742323089", "+905464710670"]},
-            {"name":"sourov","numbers":["+8801310249828", "+8801776121062"]},
-            {"name":"Srk","numbers":["013-052-34448"]},
-            {"name":"stf","numbers":["+8801720034823"]},
-            {"name":"Subedar Ansar","numbers":["+8801609472330", "016-024-36587"]},
-            {"name":"Suborna Matrittokalin","numbers":["+8801848768228"]},
-            {"name":"Suhan Fnd","numbers":["+8801932046838"]},
-            {"name":"sujon kaka Bkash","numbers":["018-296-92041"]},
-            {"name":"Sujon Vai Nid","numbers":["013-314-41506"]},
-            {"name":"Sukanto Dada","numbers":["+8801601331864", "+8801729331864"]},
-            {"name":"sume","numbers":["No phone number provided"]},
-            {"name":"Sumon","numbers":["+8801647225327"]},
-            {"name":"sumon Brivar","numbers":["+8801795588301"]},
-            {"name":"sumon Friend","numbers":["+8801786697489"]},
-            {"name":"Sumon Vai","numbers":["+8801756930506", "+8801785977717", "+97332081258"]},
-            {"name":"Supar","numbers":["017-121-65868"]},
-            {"name":"Supar Agent","numbers":["+60177833770"]},
-            {"name":"Surhab Reksa","numbers":["017-141-42637"]},
-            {"name":"Surman Khan","numbers":["017-032-01666"]},
-            {"name":"Suyaib Vai. 馃グ","numbers":["+8801745262346"]},
-            {"name":"Syed Imran Hossain BL","numbers":["+8801914577808"]},
-            {"name":"Sypar Agent","numbers":["+601124371912"]},
-            {"name":"Tahmina Akter Matrittokalin","numbers":["+8801725304122"]},
-            {"name":"Tahsan Ayon Shakil","numbers":["+8801789945298"]},
-            {"name":"Tahsan Bin Sunny","numbers":["+8801742275917"],"email":"sunny.rahman019@gmail.com"},
-            {"name":"Taiba Islam","numbers":["018-559-65628"]},
-            {"name":"Tamanna Akter Nibondon","numbers":["+8801305700721"]},
-            {"name":"Tani Apa New","numbers":["+8801319578516"]},
-            {"name":"Tania Akter","numbers":["017-799-0701"]},
-            {"name":"tanjila Fufu","numbers":["+8801783498857"]},
-            {"name":"Tanvir","numbers":["019-204-40968", "019-206-60968"]},
-            {"name":"Tanvir Ahmed Tanim","numbers":["+971508380567"]},
-            {"name":"Tanvir Choto","numbers":["+8801401335859"]},
-            {"name":"Tanvir Mirdha","numbers":["+8801813327764"]},
-            {"name":"Tanvir...","numbers":["019-455-01719"]},
-            {"name":"Tarcira","numbers":["+1-516-494-4139"]},
-            {"name":"Tasim Ahmed Dncc","numbers":["+8801893088859"]},
-            {"name":"Tasnin Marjia","numbers":["+8801325398057"]},
-            {"name":"Tawhid Pramanik","numbers":["013-206-68753"]},
-            {"name":"Tax Habib Vai","numbers":["+8801760415659"]},
-            {"name":"Tcb Office","numbers":["019-507-71809"]},
-            {"name":"Tcb Teg Officer Awlat Vai","numbers":["016-277-12900"]},
-            {"name":"Tipu Vai Pepsi","numbers":["+8801834835377"]},
-            {"name":"Titu Vai Dukan","numbers":["+8801325398445"]},
-            {"name":"Tonmoy Frd","numbers":["+8801749818822"]},
-            {"name":"Twar Fphrp1","numbers":["+8801313088356"]},
-            {"name":"Udc Gajirtek","numbers":["+8801798872171"]},
-            {"name":"Ujjol ...","numbers":["019-911-68680"]},
-            {"name":"Ujjol Vai","numbers":["017-654-50379"]},
-            {"name":"Up Sujon Pal","numbers":["+8801767411351"]},
-            {"name":"Vabi Rakib","numbers":["017-941-29644"]},
-            {"name":"Vabna Bon","numbers":["017-946-47884"]},
-            {"name":"Vai","numbers":["+8801611001311"]},
-            {"name":"Vangna Shahin","numbers":["+8801771881865"]},
-            {"name":"Vaste kisno","numbers":["+8801737995114"]},
-            {"name":"Vata","numbers":["+8801309317989", "+8801749831092", "017-277-47569", "019-252-10823"]},
-            {"name":"Vatija","numbers":["+8801729314561"]},
-            {"name":"Vwb","numbers":["+60172987331"]},
-            {"name":"Walton Lone Sarvent","numbers":["016-089-88107"]},
-            {"name":"Walton service","numbers":["017-009-41161"]},
-            {"name":"Werles","numbers":["013-190-77090"]},
-            {"name":"Wifi Mamun","numbers":["017-656-38766"]},
-            {"name":"Yeasin Vai","numbers":["+8801972911264", "+8801816501914"]},
-            {"name":"Yonus Vai Kuakata","numbers":["+8801765563507"]},
-            {"name":"Yousuf","numbers":["017-106-66099"]},
-            {"name":"zobaer","numbers":["+8801937273809"]},
-            {"name":"Zz","numbers":["017-977-96638"]
-        ];
-        // End of provided contact data
-        
-        let contactToEditIndex = null;
-        const editModal = document.getElementById('edit-modal');
-        const filterInput = document.getElementById('filterInput');
+          // Start of provided contact data
+          let contacts = JSON.parse(localStorage.getItem('contacts')) || [
+              {"name":"Tai","englishName":"Tai","numbers":["+8801757435049"]},
+              {"name":"No Word","englishName":"No Word","numbers":["+8801314722542"]},
+              {"name":"5000 Taka","englishName":"5000 Taka","numbers":["+8801715621365"]},
+              {"name":"71Worker","englishName":"71Worker","numbers":["+8801872397445"]},
+              {"name":"Aaaa","englishName":"Aaaa","numbers":["+855 87 465 384"]},
+              {"name":"AAcount","englishName":"AAcount","numbers":["1-211-00"]},
+              {"name":"Abbu","englishName":"Abbu","numbers":["017-015-27027"]},
+              {"name":"abdul Hai Er","englishName":"abdul Hai Er","numbers":["+8801798017608"]},
+              {"name":"Abdul Hai Membar","englishName":"Abdul Hai Membar","numbers":["017-273-52162"]},
+              {"name":"Abdul Hi","englishName":"Abdul Hi","numbers":["+880 1888-571521"]},
+              {"name":"Abdulla","englishName":"Abdulla","numbers":["+8801317297159"]},
+              {"name":"Abul","englishName":"Abul","numbers":["+8801767896215", "+8801789035794"]},
+              {"name":"Abul Hasan","englishName":"Abul Hasan","numbers":["+966571640726"]},
+              {"name":"Add....","englishName":"Add....","numbers":["018-257-64983"]},
+              {"name":"ADDEL","englishName":"ADDEL","numbers":["+97333520217"]},
+              {"name":"Adnan","englishName":"Adnan","numbers":["015-900-96286", "+880 1862-633745", "+880 1744-877880"]},
+              {"name":"Afa","englishName":"Afa","numbers":["017-196-06971"]},
+              {"name":"Afroja","englishName":"Afroja","numbers":["+8801784525018", "+8801518345104"]},
+              {"name":"agent 9 Wc","englishName":"agent 9 Wc","numbers":["+8801714446799"]},
+              {"name":"Agent 9 Wct","englishName":"Agent 9 Wct","numbers":["017-932-37333"]},
+              {"name":"agent","englishName":"agent","numbers":["019-158-18120"]},
+              {"name":"agent Fack","englishName":"agent Fack","numbers":["017-636-62816"]},
+              {"name":"Agent","englishName":"Agent","numbers":["+60142292707"]},
+              {"name":"Ahasan","englishName":"Ahasan","numbers":["+880 1724-493233"]},
+              {"name":"Aj Year","englishName":"Aj Year","numbers":["017-142-55074"]},
+              {"name":"Akash","englishName":"Akash","numbers":["+442070974844"]},
+              {"name":"Akhi","englishName":"Akhi","numbers":["014-075-42420"]},
+              {"name":"Akkas","englishName":"Akkas","numbers":["+8801751683234"]},
+              {"name":"Akmal","englishName":"Akmal","numbers":["+8801748991899"]},
+              {"name":"Akram","englishName":"Akram","numbers":["017-954-53704"]},
+              {"name":"Akramul","englishName":"Akramul","numbers":["+8801977549645"]},
+              {"name":"Akramul Vai","englishName":"Akramul Vai","numbers":["017-393-68706"]},
+              {"name":"Al aman","englishName":"Al aman","numbers":["+8801792407547"]},
+              {"name":"Al amin","englishName":"Al amin","numbers":["+8801714752336"]},
+              {"name":"Al","englishName":"Al","numbers":["016-282-98522"]},
+              {"name":"Al-Amin","englishName":"Al-Amin","numbers":["+8801758714707", "013-044-94102"]},
+              {"name":"ali Akbar Bai","englishName":"ali Akbar Bai","numbers":["017-125-19377"]},
+              {"name":"Ali","englishName":"Ali","numbers":["+880 1403-979330"]},
+              {"name":"Aliyabad","englishName":"Aliyabad","numbers":["+8801322161704"]},
+              {"name":"almas","englishName":"almas","numbers":["017-164-23871"]},
+              {"name":"Almas Vai","englishName":"Almas Vai","numbers":["+8801958124809"]},
+              {"name":"Alom Singar","englishName":"Alom Singar","numbers":["+8801928796426"]},
+              {"name":"Alomgir","englishName":"Alomgir","numbers":["+8801739276434"]},
+              {"name":"Amar Ma","englishName":"Amar Ma","numbers":["017-200-50460"]},
+              {"name":"Ami","englishName":"Ami","numbers":["019-204-40907"]},
+              {"name":"Amin Kha..mim","englishName":"Amin Kha..mim","numbers":["017-594-69234"]},
+              {"name":"Ammo","englishName":"Ammo","numbers":["+8801638027560"]},
+              {"name":"Amzad","englishName":"Amzad","numbers":["019-256-12428"]},
+              {"name":"Anamnul Fnd Polli","englishName":"Anamnul Fnd Polli","numbers":["017-789-05442"]},
+              {"name":"Anowar","englishName":"Anowar","numbers":["017-259-85598"]},
+              {"name":"Anower","englishName":"Anower","numbers":["+8801707157568"]},
+              {"name":"Anupum vai","englishName":"Anupum vai","numbers":["+8801928116456"]},
+              {"name":"apu","englishName":"apu","numbers":["017-871-80774"]},
+              {"name":"Arafat","englishName":"Arafat","numbers":["015-184-22219", "+880 1305-299883"]},
+              {"name":"Arif","englishName":"Arif","numbers":["017-951-08641", "+8801719876140"]},
+              {"name":"arif Vai","englishName":"arif Vai","numbers":["+8801765864149"]},
+              {"name":"Arifa","englishName":"Arifa","numbers":["+8801748750548", "+880 1577-024225", "017-120-99833"]},
+              {"name":"Arifa islam","englishName":"Arifa islam","numbers":["+8801638027560"]},
+              {"name":"Arifa Nanu","englishName":"Arifa Nanu","numbers":["+8801905393168"]},
+              {"name":"Arifar Ammu","englishName":"Arifar Ammu","numbers":["015-183-91408"]},
+              {"name":"Arifujjaman","englishName":"Arifujjaman","numbers":["017-548-53812"]},
+              {"name":"Ark","englishName":"Ark","numbers":["+880 1312-618715"]},
+              {"name":"Asad Beparir","englishName":"Asad Beparir","numbers":["+8801313236648"]},
+              {"name":"Aslam Fnd","englishName":"Aslam Fnd","numbers":["017-719-91057"]},
+              {"name":"Aslam Vai","englishName":"Aslam Vai","numbers":["017-720-82826"]},
+              {"name":"Asraf Vai Tils","englishName":"Asraf Vai Tils","numbers":["018-492-80500"]},
+              {"name":"At","englishName":"At","numbers":["013-017-54154"]},
+              {"name":"Atik","englishName":"Atik","numbers":["017-451-83077", "017-847-59082", "014-000-87341"]},
+              {"name":"Atkm","englishName":"Atkm","numbers":["+8801991168680"]},
+              {"name":"Aunty Akramuler","englishName":"Aunty Akramuler","numbers":["017-166-81733"]},
+              {"name":"Ayan Khan","englishName":"Ayan Khan","numbers":["+855 96 301 9756"]},
+              {"name":"Aysha Nid Sobulla Sikkda","englishName":"Aysha Nid Sobulla Sikkda","numbers":["018-379-98271"]},
+              {"name":"Azad","englishName":"Azad","numbers":["+8801312287523"]},
+              {"name":"Azad Vai","englishName":"Azad Vai","numbers":["018-174-89653"]},
+              {"name":"aziarat327","englishName":"aziarat327","numbers":["+966 53 326 1164"]},
+              {"name":"Aziz","englishName":"Aziz","numbers":["+96560492921", "+96566278780"]},
+              {"name":"Baba New","englishName":"Baba New","numbers":["017-830-84362"]},
+              {"name":"babul","englishName":"babul","numbers":["017-145-86833"]},
+              {"name":"Badsa","englishName":"Badsa","numbers":["+8801732516515"]},
+              {"name":"Badsa Kaka","englishName":"Badsa Kaka","numbers":["+880 1739-221828"]},
+              {"name":"Badsha","englishName":"Badsha","numbers":["+855 81 998 524"]},
+              {"name":"Bari Ala","englishName":"Bari Ala","numbers":["017-533-03241"]},
+              {"name":"Basar","englishName":"Basar","numbers":["017-214-03886", "017-584-98171"]},
+              {"name":"basar Vai Dilar","englishName":"basar Vai Dilar","numbers":["+880 1956-670083"]},
+              {"name":"basar Vai","englishName":"basar Vai","numbers":["880-174-0908388"]},
+              {"name":"Bill Vai","englishName":"Bill Vai","numbers":["+880 1751-542987"]},
+              {"name":"Billal Member","englishName":"Billal Member","numbers":["017-404-18694"]},
+              {"name":"Billal Vai New Matrittokalin Tania Akter","englishName":"Billal Vai New Matrittokalin Tania Akter","numbers":["017-870-74258"]},
+              {"name":"Bkash","englishName":"Bkash","numbers":["018-393-19352"]},
+              {"name":"Black Boy","englishName":"Black Boy","numbers":["+966572281623"]},
+              {"name":"Bmmp","englishName":"Bmmp","numbers":["018-688-43627"]},
+              {"name":"Bolod","englishName":"Bolod","numbers":["017-795-18208"]},
+              {"name":"Bow","englishName":"Bow","numbers":["+8801784572845"]},
+              {"name":"Bro","englishName":"Bro","numbers":["+8801794001566"]},
+              {"name":"BRTA","englishName":"BRTA","numbers":["+880 1718-290844"]},
+              {"name":"Call Dite","englishName":"Call Dite","numbers":["017-154-77678"]},
+              {"name":"Cd","englishName":"Cd","numbers":["+8801401424166"]},
+              {"name":"Chan Mia","englishName":"Chan Mia","numbers":["+8801741556400"]},
+              {"name":"Char Billal","englishName":"Char Billal","numbers":["+880 1840-982594"]},
+              {"name":"Char Emarot bike","englishName":"Char Emarot bike","numbers":["+8801781921201"]},
+              {"name":"Char Farok","englishName":"Char Farok","numbers":["+8801745691742"]},
+              {"name":"char Khoka","englishName":"char Khoka","numbers":["017-262-66172"]},
+              {"name":"char Masud","englishName":"char Masud","numbers":["+8801712333571"]},
+              {"name":"Char Sifat","englishName":"Char Sifat","numbers":["+8801330673491"]},
+              {"name":"Char Sohidul Vai","englishName":"Char Sohidul Vai","numbers":["013-045-02855"]},
+              {"name":"Charbhadrasan Subzonal Office Agm","englishName":"Charbhadrasan Subzonal Office Agm","numbers":["+880 1704-108988"]},
+              {"name":"Choto Ammo","englishName":"Choto Ammo","numbers":["+8801580988327"]},
+              {"name":"Choto","englishName":"Choto","numbers":["+8801770413695"]},
+              {"name":"Chr","englishName":"Chr","numbers":["+8801729505125", "+8801511929406", "+880 1734-188265"]},
+              {"name":"Chr family","englishName":"Chr family","numbers":["+8801575750806"]},
+              {"name":"Chr jahangir","englishName":"Chr jahangir","numbers":["+880 1715-696325"]},
+              {"name":"Chr M-","englishName":"Chr M-","numbers":["+8801789535517"]},
+              {"name":"Chr M1","englishName":"Chr M1","numbers":["+8801760782188"]},
+              {"name":"Chr Manik PIO","englishName":"Chr Manik PIO","numbers":["+880 1746-051330"]},
+              {"name":"chr Membar k 8 No","englishName":"chr Membar k 8 No","numbers":["+8801725430611"]},
+              {"name":"Chr OCLD","englishName":"Chr OCLD","numbers":["+880 1721-873151"]},
+              {"name":"Chr Sehab Khan Sikkha Officer Tag","englishName":"Chr Sehab Khan Sikkha Officer Tag","numbers":["+880 1719-699870"]},
+              {"name":"Chr Siddik","englishName":"Chr Siddik","numbers":["+8801777912015", "+880 1595-065376"]},
+              {"name":"Chr Subhan","englishName":"Chr Subhan","numbers":["+8801734188265"]},
+              {"name":"Chunnu","englishName":"Chunnu","numbers":["+966 54 249 3563"]},
+              {"name":"Chunnu Vai","englishName":"Chunnu Vai","numbers":["+97333517681"]},
+              {"name":"Cn Sorbandia","englishName":"Cn Sorbandia","numbers":["+8801318616236"]},
+              {"name":"Computer","englishName":"Computer","numbers":["017-151-94774"]},
+              {"name":"Cordial","englishName":"Cordial","numbers":["+8801709273855"]},
+              {"name":"Cricket","englishName":"Cricket","numbers":["014-019-04915", "018-132-55259"]},
+              {"name":"D S B Alim Vai","englishName":"D S B Alim Vai","numbers":["017-124-49901"]},
+              {"name":"Dablu","englishName":"Dablu","numbers":["017-259-75789"]},
+              {"name":"Dada","englishName":"Dada","numbers":["017-900-69669"]},
+              {"name":"Dalima","englishName":"Dalima","numbers":["+880 1305-939181"]},
+              {"name":"DALO","englishName":"DALO","numbers":["017-870-76375"]},
+              {"name":"daloar","englishName":"daloar","numbers":["009-689-1889892"]},
+              {"name":"Damion","englishName":"Damion","numbers":["+8801933129583"]},
+              {"name":"Danes","englishName":"Danes","numbers":["003-938-94537139", "+393894537139"]},
+              {"name":"Daraz","englishName":"Daraz","numbers":["+8801779335757"]},
+              {"name":"Dc Of","englishName":"Dc Of","numbers":["+880 1729-334048"]},
+              {"name":"Ddd","englishName":"Ddd","numbers":["013-018-04613"]},
+              {"name":"Ddddd","englishName":"Ddddd","numbers":["017-159-54906"]},
+              {"name":"Deloar Molla A","englishName":"Deloar Molla A","numbers":["019-248-89181"]},
+              {"name":"Dia","englishName":"Dia","numbers":["018-638-78925"]},
+              {"name":"Didar Vai","englishName":"Didar Vai","numbers":["+96566296954"]},
+              {"name":"Didar","englishName":"Didar","numbers":["009-659-6695607"]},
+              {"name":"Difenc","englishName":"Difenc","numbers":["+8801700666245"]},
+              {"name":"Dinslam","englishName":"Dinslam","numbers":["018-892-93240"]},
+              {"name":"Dipto","englishName":"Dipto","numbers":["+8801617179809"]},
+              {"name":"Dipu","englishName":"Dipu","numbers":["+8801715150086"]},
+              {"name":"Dokan","englishName":"Dokan","numbers":["+8801314680515"]},
+              {"name":"Douasa","englishName":"Douasa","numbers":["013-198-48798"]},
+              {"name":"Dsb Ikbal Sir Char","englishName":"Dsb Ikbal Sir Char","numbers":["+880 1748-589306"]},
+              {"name":"Dsb Rezaul Sir","englishName":"Dsb Rezaul Sir","numbers":["017-209-22147"]},
+              {"name":"Dukan","englishName":"Dukan","numbers":["017-971-75010"]},
+              {"name":"Dukandar","englishName":"Dukandar","numbers":["+8801736853673"]},
+              {"name":"E Ten","englishName":"E Ten","numbers":["016-418-69079"]},
+              {"name":"Edris Vai","englishName":"Edris Vai","numbers":["+8801618763235"]},
+              {"name":"Emon Choto Vai Imran","englishName":"Emon Choto Vai Imran","numbers":["013-165-77749"]},
+              {"name":"Emon","englishName":"Emon","numbers":["013-334-54347"]},
+              {"name":"Emran Kolija","englishName":"Emran Kolija","numbers":["+8801765489978"]},
+              {"name":"Emran Vai","englishName":"Emran Vai","numbers":["017-654-89978"]},
+              {"name":"Emtiyaj","englishName":"Emtiyaj","numbers":["+8801729169820"]},
+              {"name":"Ensana Vabi","englishName":"Ensana Vabi","numbers":["017-688-01339"]},
+              {"name":"Ensana Vabi Robi","englishName":"Ensana Vabi Robi","numbers":["018-562-77585"]},
+              {"name":"Ersader","englishName":"Ersader","numbers":["+8801728234614"]},
+              {"name":"Esmotara Nid","englishName":"Esmotara Nid","numbers":["+8801740765515"]},
+              {"name":"Eye","englishName":"Eye","numbers":["+8801864198112"]},
+              {"name":"face wash","englishName":"face wash","numbers":["018-202-24991"]},
+              {"name":"Fahad","englishName":"Fahad","numbers":["017-294-61378"]},
+              {"name":"FAHIM","englishName":"FAHIM","numbers":["017-224-39652"]},
+              {"name":"Faijul","englishName":"Faijul","numbers":["+8801308935757"]},
+              {"name":"Falu","englishName":"Falu","numbers":["+8801732169798"]},
+              {"name":"farhan","englishName":"farhan","numbers":["+8801765674161"]},
+              {"name":"Farhan","englishName":"Farhan","numbers":["019-993-81361"]},
+              {"name":"Farid Biay","englishName":"Farid Biay","numbers":["+8801760586516"]},
+              {"name":"Farid","englishName":"Farid","numbers":["017-273-55999"]},
+              {"name":"Farid Vai","englishName":"Farid Vai","numbers":["+8801753305288"]},
+              {"name":"Faridpur","englishName":"Faridpur","numbers":["+8801712434377"]},
+              {"name":"Faroj","englishName":"Faroj","numbers":["+8801783422714"]},
+              {"name":"Farok","englishName":"Farok","numbers":["880-174-8501692"]},
+              {"name":"Farok Vai","englishName":"Farok Vai","numbers":["017-569-01152"]},
+              {"name":"Faruk Vai","englishName":"Faruk Vai","numbers":["+8801725945359"]},
+              {"name":"ferdousi Matrittokalin","englishName":"ferdousi Matrittokalin","numbers":["+8801334528235"]},
+              {"name":"Firoj Vai North","englishName":"Firoj Vai North","numbers":["+8801712803170"]},
+              {"name":"Firuj Vai","englishName":"Firuj Vai","numbers":["017-128-03170", "017-110-59179"]},
+              {"name":"Foisal Agent","englishName":"Foisal Agent","numbers":["+8801718128848"]},
+              {"name":"Fojlo","englishName":"Fojlo","numbers":["+8801300728190"]},
+              {"name":"Food Office","englishName":"Food Office","numbers":["017-135-94689"]},
+              {"name":"Food Officer","englishName":"Food Officer","numbers":["017-374-88211"]},
+              {"name":"Food","englishName":"Food","numbers":["017-127-34284"]},
+              {"name":"Fopu","englishName":"Fopu","numbers":["+8801709829307"]},
+              {"name":"Forhad","englishName":"Forhad","numbers":["+8801329544555"]},
+              {"name":"Forhad Sir","englishName":"Forhad Sir","numbers":["+8801708392487"]},
+              {"name":"Forhad Vai","englishName":"Forhad Vai","numbers":["017-193-93868"]},
+              {"name":"Foysal Vai Cox","englishName":"Foysal Vai Cox","numbers":["018-196-40291"]},
+              {"name":"Gari Malik","englishName":"Gari Malik","numbers":["+8801761980877"]},
+              {"name":"Gm raju","englishName":"Gm raju","numbers":["+8801921268748"]},
+              {"name":"Gojariya","englishName":"Gojariya","numbers":["018-853-7642"]},
+      {"name":"Moli Vabi","numbers":["+8801312140646"]},
+      {"name":"Momin Vai Kushtia","numbers":["018-268-26583"]},
+      {"name":"Momin Vai Kushtia 2","numbers":["+8801749222920"]},
+      {"name":"Mondol","numbers":["+8801408922027"]},
+      {"name":"Moner Sar","numbers":["017-453-30270"]},
+      {"name":"Moni Mukta","numbers":["+8801752196847"],"email":"mdrajuahamed.4321@gmail.com"},
+      {"name":"Monir","numbers":["+8801781243713"]},
+      {"name":"Monir Jumadar","numbers":["+8801776777971"]},
+      {"name":"Monir Jumaddar Kaka","numbers":["880-133-0674448"]},
+      {"name":"Monir Jumaddar New","numbers":["+8801328390088"]},
+      {"name":"Monir Jumaddr","numbers":["016-464-90054"]},
+      {"name":"Monir Kaka Gp","numbers":["+8801314020660"]},
+      {"name":"Monir Kaka New","numbers":["01710-403737", "+8801744744247"]},
+      {"name":"Monir Kaka WhatsApp","numbers":["017-447-44247"]},
+      {"name":"Monir Sar","numbers":["017-453-30270"]},
+      {"name":"Monir Vai","numbers":["+8801317799046"]},
+      {"name":"Monirul Islam","numbers":["+8801317762774"]},
+      {"name":"Moniruzzaman Sawan","numbers":["+8801725798912"],"email":"moniruzzamansawon36@gmail.com"},
+      {"name":"Moriom Dada","numbers":["016-871-29913"]},
+      {"name":"Mosarof Kaka","numbers":["+8801746291943"]},
+      {"name":"Mosior","numbers":["017-627-00476"]},
+      {"name":"Mostofa Vai","numbers":["+8801676899031"]},
+      {"name":"Mostofa Vai New","numbers":["+8801554477258"]},
+      {"name":"Motin Vai","numbers":["+8801738121103"]},
+      {"name":"Moudud Vai Uno","numbers":["017-151-67366"]},
+      {"name":"Mozammel","numbers":["+966530093389"]},
+      {"name":"Msh","numbers":["+8801779026113"]},
+      {"name":"Mst Eti Akter votar+nid 3 K Pabo","numbers":["+8801615803715"]},
+      {"name":"Muhamad M Char","numbers":["+8801717682304"]},
+      {"name":"Mujaffor Kaka","numbers":["017-887-06299"]},
+      {"name":"Mujahid Mridha","numbers":["+8801316414308"]},
+      {"name":"Mujahid Vai","numbers":["017-655-80384"]},
+      {"name":"Muka Mridha Bkash","numbers":["017-997-04032"]},
+      {"name":"Mukta Vabi","numbers":["+8801785732480"]},
+      {"name":"Munna","numbers":["016-296-95168"]},
+      {"name":"Munnaf Call Dite Hobe","numbers":["+8801764301693"]},
+      {"name":"Murad Vai","numbers":["+8801759924516"]},
+      {"name":"Musa Doirampur","numbers":["018-749-26207"]},
+      {"name":"Musarof Vai","numbers":["017-118-04826"]},
+      {"name":"Musfiqur Rahman","numbers":["+8801849689644"]},
+      {"name":"Muslem Vai Nid","numbers":["+8801736295936"]},
+      {"name":"Muzahid Hossain","numbers":["+8801704452616"]},
+      {"name":"my 71 BKash Pin","numbers":["19761"]},
+      {"name":"My Brilliant Number","numbers":["+8809638934255"]},
+      {"name":"Najmul Vai Dukan","numbers":["017-451-87611"]},
+      {"name":"Nasir Vai Police","numbers":["017-190-31265"]},
+      {"name":"Nayem Mia","numbers":["+8801728290201"]},
+      {"name":"Nazmul Doirampur","numbers":["013-245-50658"]},
+      {"name":"Nazmul Huda","numbers":["017-722-17575"]},
+      {"name":"Nazmul Namajermat","numbers":["+8801931398012"]},
+      {"name":"Nazmul Rony","numbers":["+8801750094729"]},
+      {"name":"Nazmul Vai Sorbandia","numbers":["017-420-41367"]},
+      {"name":"Nid Abul Hasem","numbers":["+8801313935890"]},
+      {"name":"Nid Carrr","numbers":["+8801781499299"]},
+      {"name":"Nid Char 4","numbers":["+8801752719890"]},
+      {"name":"Nid correction","numbers":["01581-039328"]},
+      {"name":"Nid Rasel","numbers":["013-117-40574"]},
+      {"name":"Nid Sabbir","numbers":["01320-723243"]},
+      {"name":"Nid Selina+jhorna Baba","numbers":["+8801727071016"]},
+      {"name":"Nid Vai","numbers":["017-739-89746"]},
+      {"name":"Nid.com.bd","numbers":["+8801747987917"]},
+      {"name":"Nijam Mirda","numbers":["017-158-69024"]},
+      {"name":"Nilima Nid Verified","numbers":["+8801310731364"]},
+      {"name":"Nisad Vai Ngo","numbers":["017-947-82446"]},
+      {"name":"Noiyon","numbers":["013-092-83551"]},
+      {"name":"Noyon","numbers":["+8801920950176"]},
+      {"name":"Noyon Gp","numbers":["017-299-56525"]},
+      {"name":"Noyon Vai","numbers":["017-147-79882"]},
+      {"name":"NRP","numbers":["+601123673724"]},
+      {"name":"Nur Islam Vai Kisnopur","numbers":["01720-629743"]},
+      {"name":"Nuru Kaka Mekani","numbers":["016-421-42419"]},
+      {"name":"nuru Kaka Mekanik","numbers":["017-470-16507"]},
+      {"name":"Nuzrul Vai","numbers":["019-595-56867"]},
+      {"name":"O Bibahito Sonod Potro","numbers":["+8801748267303"]},
+      {"name":"Obaidol Vai","numbers":["017-366-45521"]},
+      {"name":"Obaidur Jumaddar","numbers":["+8801707157570"]},
+      {"name":"Obaidur Vai BKash 3k","numbers":["017-158-68137"]},
+      {"name":"Okup Officer","numbers":["+8801868588215"]},
+      {"name":"Omr","numbers":["+8801731153578"]},
+      {"name":"Onita","numbers":["013-150-36717"]},
+      {"name":"Onita Akter","numbers":["013-002-63349"]},
+      {"name":"Osman","numbers":["009-656-0660412"]},
+      {"name":"OTUL","numbers":["017-206-80987"]},
+      {"name":"Pagol","numbers":["+8801732283118", "017-908-78401"]},
+      {"name":"paikari Bazar","numbers":["+8801839390492"]},
+      {"name":"Pailing Mistry","numbers":["+8801771967822"]},
+      {"name":"pannu Fakir","numbers":["017-466-85737"]},
+      {"name":"Pannu Kaka","numbers":["017-163-62937"]},
+      {"name":"Par","numbers":["+8801766299739"]},
+      {"name":"Parvezz","numbers":["+8801576454961"]},
+      {"name":"Pasha","numbers":["017-323-24479"]},
+      {"name":"Pbg Tajul","numbers":["017-121-43860"]},
+      {"name":"Peyal Vai Army","numbers":["+8801767971321"]},
+      {"name":"photostudio859","numbers":["+8801972253389"]},
+      {"name":"Pitti Rani","numbers":["+8801743656172"]},
+      {"name":"Pmo Dak Ashraf","numbers":["+8801720542627"]},
+      {"name":"Polar Icecream","numbers":["+8801972960716"]},
+      {"name":"Polash","numbers":["017-170-63187"]},
+      {"name":"Post Office Char Hajigong","numbers":["+8801714812849"]},
+      {"name":"Prince tanvir","numbers":["+8801752695102"]},
+      {"name":"Principle Sir","numbers":["017-180-60408"]},
+      {"name":"prokas Chondo Bissas Sir","numbers":["+8801741606908"]},
+      {"name":"Protab Sdc","numbers":["017-497-04199"]},
+      {"name":"Rabbi","numbers":["+8801759208807"]},
+      {"name":"rabi Apa","numbers":["013-041-66053"]},
+      {"name":"Rafiul","numbers":["+8801784136702"]},
+      {"name":"rafiul Islam","numbers":["017-565-29067"]},
+      {"name":"Rahim Dukan Ps","numbers":["01402-917528"]},
+      {"name":"Rahim Vai Udc","numbers":["+8801553819750"]},
+      {"name":"Md Rahim UDC Char Harirampur Union parishad","numbers":["+8801735565358"]},
+      {"name":"Raihan Er Ammu Kaki","numbers":["+8801746292238"]},
+      {"name":"Raihan Vai. Komlapur","numbers":["+8801323146615"]},
+      {"name":"Raihan WhatsApp","numbers":["017-432-56564"]},
+      {"name":"Raiy Moni","numbers":["017-148-67665"]},
+      {"name":"Raja Dalal","numbers":["+8801732747874"]},
+      {"name":"Rajek Mama","numbers":["+8801785048749"]},
+      {"name":"Rajek Vai","numbers":["+8801729346954"]},
+      {"name":"Dr Rajib","numbers":["017-275-64167", "017-230-26023"]},
+      {"name":"Rajib Vai Jonosasto","numbers":["017-079-87287"]},
+      {"name":"rajo fn","numbers":["017-996-84581"]},
+      {"name":"Rajo mana","numbers":["017-615-61684"]},
+      {"name":"Raju Fnd New","numbers":["+8801639822523"]},
+      {"name":"Raju manna","numbers":["+8801927586233"]},
+      {"name":"Raju School Friend","numbers":["+8801840334688"]},
+      {"name":"Raju Sorbandiya","numbers":["017-284-61722"]},
+      {"name":"Raju Vai","numbers":["+8801798642055"]},
+      {"name":"Raju Vai Vasancor","numbers":["+8801778044211"]},
+      {"name":"Dr Rakib","numbers":["+8801919476084"]},
+      {"name":"Rakib Fufato Vai. 馃槏馃槏馃槏","numbers":["+8801784502778"]},
+      {"name":"Rakib Kaka","numbers":["+8801744895674"]},
+      {"name":"Rakib Kaka New","numbers":["+8801601520961"]},
+      {"name":"Rakib Like","numbers":["+8801980311229"]},
+      {"name":"RAKIB NAMAJARM","numbers":["017-342-35816"]},
+      {"name":"Rakib Vai","numbers":["+8801723064881"]},
+      {"name":"Ranu Bon","numbers":["017-415-38101"]},
+      {"name":"Raseda Apa","numbers":["+8801749966943"]},
+      {"name":"Rasel","numbers":["+8801942569242"]},
+      {"name":"Rasel Vi","numbers":["+8801749833122"]},
+      {"name":"Ratry S","numbers":["013-154-23936"]},
+      {"name":"Razzab Molla","numbers":["+8801756661611"]},
+      {"name":"Razzak","numbers":["60194611530"]},
+      {"name":"Rekha Apa Rasi","numbers":["+8801703125740"]},
+      {"name":"Renu Apu","numbers":["+8801825762869"]},
+      {"name":"Rezaul Kaji","numbers":["+8801738223976"]},
+      {"name":"rezwan Shakib","numbers":["015-863-63636"]},
+      {"name":"Riaj Vai","numbers":["017-710-19253"]},
+      {"name":"Riaz Likee","numbers":["+8801304351158"]},
+      {"name":"Ridoy dukan","numbers":["019-805-14082"]},
+      {"name":"Ridoy Elaka","numbers":["013-262-03271"]},
+      {"name":"Ripon Kaka","numbers":["+8801726336008"]},
+      {"name":"RIPON Vai","numbers":["01317-570470"]},
+      {"name":"Ripon Vai Ssp","numbers":["+8801715961516"]},
+      {"name":"Riya Moni","numbers":["018-450-82490"]},
+      {"name":"Riya Mony","numbers":["019-479-19726", "017-039-68527"]},
+      {"name":"Riyad Vai Baitollaman","numbers":["+8801792389525"]},
+      {"name":"Riyajul Fakir","numbers":["016-257-97947"]},
+      {"name":"Robal dis","numbers":["017-108-83918"]},
+      {"name":"robal vai","numbers":["017-150-16398"]},
+      {"name":"Robiul Islam.","numbers":["+8801927006224"]},
+      {"name":"Rofik Vai","numbers":["009-745-5601905"]},
+      {"name":"Rofik Vai Namajermat","numbers":["+8801771475225"]},
+      {"name":"Rofik Vai Namjermat","numbers":["016-027-05169"]},
+      {"name":"rofiq Fakir","numbers":["017-818-31377"]},
+      {"name":"Rofiqul Islam Huzur","numbers":["017-717-66616"]},
+      {"name":"Rofiqul Islam Huzur 2","numbers":["880-172-0522180"]},
+      {"name":"Rofiqul Sir","numbers":["017-187-59780"]},
+      {"name":"Romjan Vai","numbers":["013-019-30040"]},
+      {"name":"Romjan Vai Pathao","numbers":["+8801840770327"]},
+      {"name":"Romon","numbers":["017-846-92414"]},
+      {"name":"ROMON 2","numbers":["019-341-88298"]},
+      {"name":"ROMON VAI","numbers":["+8801928496091"]},
+      {"name":"Roni Vagna Nagod","numbers":["+8801603299253"]},
+      {"name":"Roni Vai Mullar Dangi","numbers":["+8801701724504"]},
+      {"name":"Ronjon Thakur","numbers":["+8801740418499"]},
+      {"name":"Ronye","numbers":["017-007-65094"]},
+      {"name":"Ros Mama","numbers":["+8801723798908"]},
+      {"name":"Roson Ali","numbers":["+8801715676560"]},
+      {"name":"Rosul Mestet Bazar","numbers":["017-070-23533"]},
+      {"name":"Rotn khan","numbers":["017-432-81180"]},
+      {"name":"Royal Kofi","numbers":["+8801961841838"]},
+      {"name":"Rpmon","numbers":["019-341-88298"]},
+      {"name":"Rrr","numbers":["017-458-95674"]},
+      {"name":"Rubel Friend","numbers":["013-182-17054"]},
+      {"name":"Rubel Hossen","numbers":["+8801798340312"]},
+      {"name":"Rubel Vai Cmn","numbers":["013-207-69206"]},
+      {"name":"Rubel Vai Dukan","numbers":["014-000-87250"]},
+      {"name":"Rubel Vai Tren","numbers":["+8801742353463"]},
+      {"name":"Rubiya Akter","numbers":["+8801856547956"]},
+      {"name":"Ruhol Amin Choto","numbers":["+8801779339746"]},
+      {"name":"Ruma Apa","numbers":["017-654-37516"]},
+      {"name":"Ruma Apu","numbers":["017-144-12332"]},
+      {"name":"Ruma Matrittokalin","numbers":["+8801610442828"]},
+      {"name":"Sab","numbers":[]},
+      {"name":"Sabbir Dost","numbers":["+8801576727442"]},
+      {"name":"Sabbir Kaka","numbers":["016-244-74025"]},
+      {"name":"Sabbir Kaka Gp","numbers":["+8801792962387"]},
+      {"name":"Sabbir Kaka Kazi","numbers":["016-244-74025"]},
+      {"name":"Sabbir Khalek Bazar New","numbers":["+8801703959959"]},
+      {"name":"Sabbir Vai Khalek Bazar","numbers":["+8801756751510"]},
+      {"name":"sabbirmd47931","numbers":["+8801922292385"]},
+      {"name":"Sabina Husband Sourov Matrittokalin","numbers":["+8801797584453"]},
+      {"name":"sabina Matrittokalin+nid","numbers":["017-342-57759"]},
+      {"name":"Sabina Nid","numbers":["+8801329143297"]},
+      {"name":"Sabro Bkash","numbers":["013-088-42535"]},
+      {"name":"Sad","numbers":["+8801618513301"]},
+      {"name":"Sadek Choto Vai","numbers":["+8801406964305"]},
+      {"name":"Sadu","numbers":["013-108-79476"]},
+      {"name":"Sagediul khan","numbers":["+8801716203803"]},
+      {"name":"Sagor Friend","numbers":["017-545-98916"]},
+      {"name":"Sagor Hasan","numbers":["+8801783755595"]},
+      {"name":"Sagor Nibondon","numbers":["+8801770181310"]},
+      {"name":"Sagor vai m","numbers":["+8801932535711"]},
+      {"name":"Sagorika Apu","numbers":["018-756-45379", "+8801302780814"]},
+      {"name":"Sahadat Vai","numbers":["017-159-62727"]},
+      {"name":"Sahadat Vai Bkash","numbers":["017-135-85263"]},
+      {"name":"Sahadat Vai Imo","numbers":["019-117-86216"]},
+      {"name":"Sahariya Arojkhar Dangi","numbers":["017-580-56065", "013-342-11367"]},
+      {"name":"Saheda Akter","numbers":["013-043-40107"]},
+      {"name":"Saheda Apa","numbers":["+8801746633340"]},
+      {"name":"Sahid Vai.","numbers":["017-944-13689"]},
+      {"name":"Sahin Vai","numbers":["+8801775237178"]},
+      {"name":"Saidul Vai","numbers":["+966571440975"]},
+      {"name":"Saifuddin Vai","numbers":["009-665-04179036"]},
+      {"name":"Saim Vai Udc","numbers":["+8801712345225"]},
+      {"name":"Sajahan Parul","numbers":["017-336-92415"]},
+      {"name":"Sajeda Akter Caina Matrittokalin Contac","numbers":["+8801782856755"]},
+      {"name":"Sajek Murad Vai","numbers":["016-405-63201"]},
+      {"name":"Sakat Vai","numbers":["009-665-55472130", "+8801333649164"]},
+      {"name":"Sakat Vai New","numbers":["+8801736749717"]},
+      {"name":"sakathoaasin","numbers":["+96594717283"]},
+      {"name":"Salam Kaka","numbers":["017-289-93563"]},
+      {"name":"Salauddin Nirbacon Office","numbers":["017-227-89197"]},
+      {"name":"salepur Char","numbers":["+8801949493388"]},
+      {"name":"Salim Vai","numbers":["009-660-532979438", "016-191-71380"]},
+      {"name":"Salina F","numbers":["017-923-96773"]},
+      {"name":"Sam Agent","numbers":["+60142292592"]},
+      {"name":"samim Hasan","numbers":["009-715-43037062"]},
+      {"name":"Samim Reja","numbers":["017-535-74002"]},
+      {"name":"Samim Reza","numbers":["017-448-38740"]},
+      {"name":"Samima","numbers":["+8801736344786"]},
+      {"name":"Samol Web Page","numbers":["+8801823036288"]},
+      {"name":"sangbadik","numbers":["+8801911917448", "+8801711589242"]},
+      {"name":"Sanjida Akter Chaina Matrittokalin BKash","numbers":["017-917-24742"]},
+      {"name":"Sarvar Copy","numbers":["01330-202110"]},
+      {"name":"Sattar Vai Secretary","numbers":["+8801731137750"]},
+      {"name":"Sawon","numbers":["+8801703979840"]},
+      {"name":"Sayma Akter Mahi","numbers":["+8801325398440"]},
+      {"name":"Sd Anowar Com","numbers":["+8801726840636"]},
+      {"name":"Sd Anowar Com BKash","numbers":["+8801787576785"]},
+      {"name":"Sec Lablu 3","numbers":["+8801795310105"]},
+      {"name":"Sec Nikhil Da Char Bhadrason","numbers":["019-370-63858"]},
+      {"name":"Sefali Matrittokalin","numbers":["+8801798406501"]},
+      {"name":"Sek Soleman","numbers":["017-449-66584"]},
+      {"name":"Sekandar Vai","numbers":["017-451-17216"]},
+      {"name":"Selim Uncle Bl Jfp","numbers":["019-259-74324"]},
+      {"name":"Selim Vai","numbers":["+8801840126501"]},
+      {"name":"selim Vai Teacher","numbers":["+8801762308888"]},
+      {"name":"Selim Vai WhatsApp","numbers":["966593139509"]},
+      {"name":"Selina Akter Matrittokalin","numbers":["+8801794164442"]},
+      {"name":"Sentur Bow","numbers":["+8801758475271"]},
+      {"name":"Shafikul Islam Db Faridpur","numbers":["+8801722845722"],"email":"a1722845722@gmail.com"},
+      {"name":"Shahidul Islam Udc","numbers":["+8801715935459"]},
+      {"name":"Shahin Vai. Mostofa Kobir","numbers":["018-821-04124"]},
+      {"name":"Shakib","numbers":["013-017-54154"]},
+      {"name":"Shakib 14-987","numbers":["+8801888224039"]},
+      {"name":"Shakib Sodorpur","numbers":["013-103-74931"]},
+      {"name":"Shakil Bondu Bkash","numbers":["017-866-55922"]},
+      {"name":"Shakil Molla Matrittokalin Vata","numbers":["+8801595065359"]},
+      {"name":"Shakil Vai","numbers":["016-298-81968"]},
+      {"name":"Shakila Apu Bkash","numbers":["017-868-68308"]},
+      {"name":"Shamim Dhaka","numbers":["+8801928916475"]},
+      {"name":"Shamim Freelancer","numbers":["+971554380250"]},
+      {"name":"Sharmin Fnd","numbers":["014-075-12077"]},
+      {"name":"Sheik Sahin Khalpar Nid","numbers":["+8801762489228"]},
+      {"name":"Sheik Sojib","numbers":["+8801780350199"]},
+      {"name":"Sheikh Al Amin Vai","numbers":["+971586207125"]},
+      {"name":"Shiab Ru","numbers":["+8801568831935"]},
+      {"name":"Shimul Friend","numbers":["+8801315353253"]},
+      {"name":"SHISHIR","numbers":["+8801782828853"]},
+      {"name":"Shohidul Vai","numbers":["+8801777544649", "+971563950099"]},
+      {"name":"Shopee","numbers":["+8801753937342"]},
+      {"name":"Shuvo Vai Diu","numbers":["+8801672429953"]},
+      {"name":"Si Probin Sir","numbers":["+8801724198671"]},
+      {"name":"Sif","numbers":["+966504179036"]},
+      {"name":"Sila Apa Nirbachon Office","numbers":["017-975-38608"]},
+      {"name":"Silpi Matrittokalin Potua ntk 4200","numbers":["+8801795092454"]},
+      {"name":"Sima","numbers":["009-627-85466712"]},
+      {"name":"Sima Akter Matrittokalin 4%","numbers":["+8801323531648"]},
+      {"name":"Sir V","numbers":["+601123411725"]},
+      {"name":"Siraj Vai","numbers":["013-236-34686"]},
+      {"name":"Sk","numbers":["006-011-23411725"]},
+      {"name":"Sk Kanon","numbers":["+8801781826165"]},
+      {"name":"Sk Nirob","numbers":["+8801733450309"]},
+      {"name":"sk Raj","numbers":["+8801728021814"]},
+      {"name":"Skb","numbers":["013-093-57207"]},
+      {"name":"Sksk","numbers":["017-630-00095"]},
+      {"name":"Sofi Molla","numbers":["017-953-12260"]},
+      {"name":"Sofik Vai Charmen","numbers":["+8801407100362"]},
+      {"name":"Sohag Vai","numbers":["017-199-80716"]},
+      {"name":"Sohel Kaka Beparirdukan","numbers":["017-523-50612"]},
+      {"name":"Sohel Nid","numbers":["+8801721230264"]},
+      {"name":"Sohid Jorna Kaka Nid","numbers":["+8801607248906"]},
+      {"name":"Sohid Vai Aliyabad Dofadar BKash","numbers":["016-216-00246"]},
+      {"name":"SOHIDUL VAI","numbers":["+8801304502855"]},
+      {"name":"Sohidul Member","numbers":["+8801760309219"]},
+      {"name":"sohidul Islam Char","numbers":["013-248-46151"]},
+      {"name":"Sojib Elaka","numbers":["017-667-11933"]},
+      {"name":"sojib Friend","numbers":["880-184-3937243"]},
+      {"name":"Sojib mobile","numbers":["019-623-06743"]},
+      {"name":"Sojib namajer","numbers":["+8801765733653"]},
+      {"name":"Sokanto Vai Nirbachon Office.","numbers":["+8801920643803"]},
+      {"name":"Somajseba Habib Vai","numbers":["+8801890223888"]},
+      {"name":"Somajseba Vai","numbers":["016-872-28549"]},
+      {"name":"somir Bepari","numbers":["+8801732324905"]},
+      {"name":"Sompa Vabi","numbers":["017-727-92430"]},
+      {"name":"Sonod.com.bd","numbers":["017-447-69331"]},
+      {"name":"Sopon Bondu","numbers":["+8801812121849"]},
+      {"name":"Sopon Friend Khalpar","numbers":["+8801309544893"]},
+      {"name":"Sopon Kaka","numbers":["+8801689684771"]},
+      {"name":"Sorif Boswas Vajondanga","numbers":["+8801721684947"]},
+      {"name":"Soriful Islam Sir","numbers":["017-145-62616"]},
+      {"name":"sorik Daroga","numbers":["018-511-66758"]},
+      {"name":"Soukot Vai","numbers":["+8801742323089"]},
+      {"name":"Soukot Vai Lai","numbers":["+905464710670"]},
+      {"name":"sourov","numbers":["+8801310249828"]},
+      {"name":"sourov Nagorkanda","numbers":["+8801776121062"]},
+      {"name":"Srk","numbers":["013-052-34448"]},
+      {"name":"stf","numbers":["+8801720034823"]},
+      {"name":"Subedar Ansar","numbers":["+8801609472330", "016-024-36587"]},
+      {"name":"Suborna Matrittokalin","numbers":["+8801848768228"]},
+      {"name":"Suhan Fnd","numbers":["+8801932046838"]},
+      {"name":"sujon kaka Bkash","numbers":["018-296-92041"]},
+      {"name":"Sujon Vai Nid","numbers":["013-314-41506"]},
+      {"name":"Sukanto Dada","numbers":["+8801601331864", "+8801729331864"]},
+      {"name":"sume","numbers":[]},
+      {"name":"Sumon","numbers":["+8801647225327"]},
+      {"name":"sumon Brivar","numbers":["+8801795588301"]},
+      {"name":"sumon Friend","numbers":["+8801786697489"]},
+      {"name":"Sumon Vai","numbers":["+8801756930506"]},
+      {"name":"Sumon Vai Nirbachan Office","numbers":["+8801785977717"]},
+      {"name":"sumon Vai.. Vata","numbers":["+97332081258"]},
+      {"name":"Supar","numbers":["017-121-65868"]},
+      {"name":"Supar Agent","numbers":["+60177833770"]},
+      {"name":"Surhab Reksa","numbers":["017-141-42637"]},
+      {"name":"Surman Khan","numbers":["017-032-01666"]},
+      {"name":"Suyaib Vai. 馃グ","numbers":["+8801745262346"]},
+      {"name":"Syed Imran Hossain BL","numbers":["+8801914577808"]},
+      {"name":"Sypar Agent","numbers":["+601124371912"]},
+      {"name":"Tahmina Akter Matrittokalin","numbers":["+8801725304122"]},
+      {"name":"Tahsan Ayon Shakil","numbers":["+8801789945298"]},
+      {"name":"Tahsan Bin Sunny","numbers":["+8801742275917"],"email":"sunny.rahman019@gmail.com"},
+      {"name":"Taiba Islam","numbers":["018-559-65628"]},
+      {"name":"Tamanna Akter Nibondon","numbers":["+8801305700721"]},
+      {"name":"Tani Apa New","numbers":["+8801319578516"]},
+      {"name":"Tania Akter","numbers":["017-799-0701"]},
+      {"name":"tanjila Fufu","numbers":["+8801783498857"]},
+      {"name":"Tanvir","numbers":["019-204-40968", "019-206-60968"]},
+      {"name":"Tanvir Ahmed Tanim","numbers":["+971508380567"]},
+      {"name":"Tanvir Choto","numbers":["+8801401335859"]},
+      {"name":"Tanvir Mirdha","numbers":["+8801813327764"]},
+      {"name":"Tanvir...","numbers":["019-455-01719"]},
+      {"name":"Tarcira","numbers":["+1-516-494-4139"]},
+      {"name":"Tasim Ahmed Dncc","numbers":["+8801893088859"]},
+      {"name":"Tasnin Marjia","numbers":["+8801325398057"]},
+      {"name":"Tawhid Pramanik","numbers":["013-206-68753"]},
+      {"name":"Tax Habib Vai","numbers":["+8801760415659"]},
+      {"name":"Tcb Office","numbers":["019-507-71809"]},
+      {"name":"Tcb Teg Officer Awlat Vai","numbers":["016-277-12900"]},
+      {"name":"Tipu Vai Pepsi","numbers":["+8801834835377"]},
+      {"name":"Titu Vai Dukan","numbers":["+8801325398445"]},
+      {"name":"Tonmoy Frd","numbers":["+8801749818822"]},
+      {"name":"Twar Fphrp1","numbers":["+8801313088356"]},
+      {"name":"Udc Gajirtek","numbers":["+8801798872171"]},
+      {"name":"Ujjol ...","numbers":["019-911-68680"]},
+      {"name":"Ujjol Vai","numbers":["017-654-50379"]},
+      {"name":"Up Sujon Pal","numbers":["+8801767411351"]},
+      {"name":"Vabi Rakib","numbers":["017-941-29644"]},
+      {"name":"Vabna Bon","numbers":["017-946-47884"]},
+      {"name":"Vai","numbers":["+8801611001311"]},
+      {"name":"Vangna Shahin","numbers":["+8801771881865"]},
+      {"name":"Vaste kisno","numbers":["+8801737995114"]},
+      {"name":"Vata","numbers":["+8801309317989"]},
+      {"name":"Vata 2","numbers":["+8801749831092"]},
+      {"name":"Vata 4","numbers":["017-277-47569"]},
+      {"name":"Vata4","numbers":["019-252-10823"]},
+      {"name":"Vatija","numbers":["+8801729314561"]},
+      {"name":"Vwb","numbers":["+60172987331"]},
+      {"name":"Walton Lone Sarvent","numbers":["016-089-88107"]},
+      {"name":"Walton service","numbers":["017-009-41161"]},
+      {"name":"Werles","numbers":["013-190-77090"]},
+      {"name":"Wifi Mamun","numbers":["017-656-38766"]},
+      {"name":"Yeasin Vai","numbers":["+8801972911264"]},
+      {"name":"Yeasin Vai New","numbers":["+8801816501914"]},
+      {"name":"Yonus Vai Kuakata","numbers":["+8801765563507"]},
+      {"name":"Yousuf","numbers":["017-106-66099"]},
+      {"name":"zobaer","numbers":["+8801937273809"]},
+      {"name":"Zz","numbers":["017-977-96638"]}
 
-        function saveContacts() {
-            localStorage.setItem('contacts', JSON.stringify(contacts));
-        }
+          ];
+          // End of provided contact data
 
-        function renderContacts(filteredContacts = contacts) {
-            const contactList = document.getElementById('contact-list');
-            contactList.innerHTML = '';
+          let contactToEditIndex = null;
+          const editModal = document.getElementById('edit-modal');
+          const filterInput = document.getElementById('filterInput');
 
-            if (filteredContacts.length === 0) {
-                contactList.innerHTML = '<p style="text-align: center; color: #666;">কোনো কন্টাক্ট পাওয়া যায়নি।</p>';
-                return;
-            }
+          function saveContacts() {
+              localStorage.setItem('contacts', JSON.stringify(contacts));
+          }
 
-            filteredContacts.forEach((contact, index) => {
-                const listItem = document.createElement('li');
-                listItem.classList.add('contact-item');
+          function renderContacts(filteredContacts = contacts) {
+              const contactList = document.getElementById('contact-list');
+              contactList.innerHTML = '';
 
-                // Build a string for the numbers
-                const numbersHtml = contact.numbers.map(num => `<span class="number">${num}</span>`).join('<br>');
+              if (filteredContacts.length === 0) {
+                  contactList.innerHTML = '<p style="text-align: center; color: #666;">কোনো কন্টাক্ট পাওয়া যায়নি।</p>';
+                  return;
+              }
 
-                // Create action buttons for each number
-                const actionButtonsHtml = contact.numbers.map(num => `
-                    <div class="single-number-actions">
-                        <button class="call-btn" onclick="callContact('${num}')"><i class="fas fa-phone-alt"></i></button>
-                        <button class="whatsapp-btn" onclick="openWhatsApp('${num}')"><i class="fab fa-whatsapp"></i></button>
-                        <button class="imo-btn" onclick="openImo('${num}')"><i class="fas fa-video"></i></button>
-                    </div>
-                `).join('');
+              filteredContacts.forEach((contact, index) => {
+                  const listItem = document.createElement('li');
+                  listItem.classList.add('contact-item');
 
-                listItem.innerHTML = `
-                    <div class="contact-info">
-                        <span class="name">${contact.name}</span>
-                        <div class="contact-numbers-display">${numbersHtml}</div>
-                    </div>
-                    <div class="contact-actions">
-                        ${actionButtonsHtml}
-                        <button class="edit-btn" onclick="showEditModal(${index})"><i class="fas fa-edit"></i></button>
-                    </div>
-                `;
-                contactList.appendChild(listItem);
-            });
-        }
+                  // Build a string for the numbers
+                  const numbersHtml = contact.numbers.map(num => `<span class="number">${num}</span>`).join('<br>');
 
-        function filterContacts() {
-            const searchText = filterInput.value.toLowerCase();
-            const filtered = contacts.filter(contact =>
-                contact.name.toLowerCase().includes(searchText) ||
-                (contact.englishName && contact.englishName.toLowerCase().includes(searchText)) ||
-                contact.numbers.some(num => num.includes(searchText)) ||
-                (contact.email && contact.email.toLowerCase().includes(searchText)) ||
-                (contact.address && contact.address.toLowerCase().includes(searchText))
-            );
-            renderContacts(filtered);
-        }
+                  // Create action buttons for each number
+                  const actionButtonsHtml = contact.numbers.map(num => `
+                      <div class="single-number-actions">
+                          <button class="call-btn" onclick="callContact('${num}')"><i class="fas fa-phone-alt"></i></button>
+                          <button class="whatsapp-btn" onclick="openWhatsApp('${num}')"><i class="fab fa-whatsapp"></i></button>
+                          <button class="imo-btn" onclick="openImo('${num}')"><i class="fas fa-video"></i></button>
+                      </div>
+                  `).join('');
 
-        function showEditModal(index) {
-            contactToEditIndex = index;
-            const contact = contacts[index];
-            document.getElementById('editContactName').value = contact.name;
-            document.getElementById('editContactEnglishName').value = contact.englishName || '';
-            document.getElementById('editContactNumbers').value = contact.numbers.join(', ');
-            document.getElementById('editContactEmail').value = contact.email || '';
-            document.getElementById('editContactAddress').value = contact.address || '';
-            editModal.style.display = 'flex';
-        }
-        
-        function closeEditModal() {
-            editModal.style.display = 'none';
-            contactToEditIndex = null;
-        }
+                  listItem.innerHTML = `
+                      <div class="contact-info">
+                          <span class="name">${contact.name}</span>
+                          <div class="contact-numbers-display">${numbersHtml}</div>
+                      </div>
+                      <div class="contact-actions">
+                          ${actionButtonsHtml}
+                          <button class="edit-btn" onclick="showEditModal(${index})"><i class="fas fa-edit"></i></button>
+                      </div>
+                  `;
+                  contactList.appendChild(listItem);
+              });
+          }
 
-        function saveEdit() {
-            if (contactToEditIndex !== null) {
-                const name = document.getElementById('editContactName').value.trim();
-                const englishName = document.getElementById('editContactEnglishName').value.trim();
-                const numbers = document.getElementById('editContactNumbers').value.trim().split(',').map(n => n.trim()).filter(n => n);
-                const email = document.getElementById('editContactEmail').value.trim();
-                const address = document.getElementById('editContactAddress').value.trim();
+          function filterContacts() {
+              const searchText = filterInput.value.toLowerCase();
+              const filtered = contacts.filter(contact =>
+                  contact.name.toLowerCase().includes(searchText) ||
+                  (contact.englishName && contact.englishName.toLowerCase().includes(searchText)) ||
+                  contact.numbers.some(num => num.includes(searchText)) ||
+                  (contact.email && contact.email.toLowerCase().includes(searchText)) ||
+                  (contact.address && contact.address.toLowerCase().includes(searchText))
+              );
+              renderContacts(filtered);
+          }
 
-                if (!name || numbers.length === 0) {
-                    alert('নাম এবং অন্তত একটি মোবাইল নাম্বার দিতে হবে।');
-                    return;
-                }
+          function showEditModal(index) {
+              contactToEditIndex = index;
+              const contact = contacts[index];
+              document.getElementById('editContactName').value = contact.name;
+              document.getElementById('editContactEnglishName').value = contact.englishName || '';
+              document.getElementById('editContactNumbers').value = contact.numbers.join(', ');
+              document.getElementById('editContactEmail').value = contact.email || '';
+              document.getElementById('editContactAddress').value = contact.address || '';
+              editModal.style.display = 'flex';
+          }
 
-                contacts[contactToEditIndex] = { name, englishName, numbers, email, address };
-                saveContacts();
-                renderContacts();
-                closeEditModal();
-            }
-        }
+          function closeEditModal() {
+              editModal.style.display = 'none';
+              contactToEditIndex = null;
+          }
 
-        function addContact() {
-            const nameInput = document.getElementById('newContactName');
-            const englishNameInput = document.getElementById('newContactEnglishName');
-            const numbersInput = document.getElementById('newContactNumbers');
-            const emailInput = document.getElementById('newContactEmail');
-            const addressInput = document.getElementById('newContactAddress');
-            const addResultMessage = document.getElementById('add-result-message');
-            
-            const name = nameInput.value.trim();
-            const englishName = englishNameInput.value.trim();
-            const numbers = numbersInput.value.trim().split(',').map(n => n.trim()).filter(n => n);
-            const email = emailInput.value.trim();
-            const address = addressInput.value.trim();
+          function saveEdit() {
+              if (contactToEditIndex !== null) {
+                  const name = document.getElementById('editContactName').value.trim();
+                  const englishName = document.getElementById('editContactEnglishName').value.trim();
+                  const numbers = document.getElementById('editContactNumbers').value.trim().split(',').map(n => n.trim()).filter(n => n);
+                  const email = document.getElementById('editContactEmail').value.trim();
+                  const address = document.getElementById('editContactAddress').value.trim();
 
-            addResultMessage.textContent = '';
-            addResultMessage.className = 'result-box';
+                  if (!name || numbers.length === 0) {
+                      alert('নাম এবং অন্তত একটি মোবাইল নাম্বার দিতে হবে।');
+                      return;
+                  }
 
-            if (name === '' || numbers.length === 0) {
-                addResultMessage.textContent = 'নাম এবং অন্তত একটি নাম্বার উভয়ই দিন।';
-                addResultMessage.classList.add('error');
-                return;
-            }
+                  contacts[contactToEditIndex] = { name, englishName, numbers, email, address };
+                  saveContacts();
+                  renderContacts();
+                  closeEditModal();
+              }
+          }
 
-            const isDuplicate = contacts.some(contact => contact.numbers.some(num => numbers.includes(num)));
-            if (isDuplicate) {
-                addResultMessage.textContent = 'এই নাম্বারটি ইতিমধ্যে যোগ করা আছে।';
-                addResultMessage.classList.add('error');
-                return;
-            }
-            
-            contacts.push({ name, englishName, numbers, email, address });
-            saveContacts();
-            renderContacts();
+          function addContact() {
+              const nameInput = document.getElementById('newContactName');
+              const englishNameInput = document.getElementById('newContactEnglishName');
+              const numbersInput = document.getElementById('newContactNumbers');
+              const emailInput = document.getElementById('newContactEmail');
+              const addressInput = document.getElementById('newContactAddress');
+              const addResultMessage = document.getElementById('add-result-message');
 
-            addResultMessage.textContent = `${name} কন্টাক্টটি সফলভাবে যোগ করা হয়েছে।`;
-            addResultMessage.classList.add('success');
+              const name = nameInput.value.trim();
+              const englishName = englishNameInput.value.trim();
+              const numbers = numbersInput.value.trim().split(',').map(n => n.trim()).filter(n => n);
+              const email = emailInput.value.trim();
+              const address = addressInput.value.trim();
 
-            nameInput.value = '';
-            englishNameInput.value = '';
-            numbersInput.value = '';
-            emailInput.value = '';
-            addressInput.value = '';
-        }
+              addResultMessage.textContent = '';
+              addResultMessage.className = 'result-box';
 
-        function callContact(number) {
-            window.location.href = `tel:${number}`;
-        }
-        
-        function openWhatsApp(number) {
-            const formattedNumber = number.replace(/[^0-9+]/g, '');
-            window.open(`https://wa.me/${formattedNumber}`, '_blank');
-        }
+              if (name === '' || numbers.length === 0) {
+                  addResultMessage.textContent = 'নাম এবং অন্তত একটি নাম্বার উভয়ই দিন।';
+                  addResultMessage.classList.add('error');
+                  return;
+              }
 
-        function openImo(number) {
-            window.open(`imo://user/${number.replace(/[^0-9+]/g, '')}`, '_blank');
-        }
+              const isDuplicate = contacts.some(contact => contact.numbers.some(num => numbers.includes(num)));
+              if (isDuplicate) {
+                  addResultMessage.textContent = 'এই নাম্বারটি ইতিমধ্যে যোগ করা আছে।';
+                  addResultMessage.classList.add('error');
+                  return;
+              }
 
-        function searchFacebook(name) {
-            const searchQuery = `Facebook profile of ${name}`;
-            window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
-        }
+              contacts.push({ name, englishName, numbers, email, address });
+              saveContacts();
+              renderContacts();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderContacts();
-        });
+              addResultMessage.textContent = `${name} কন্টাক্টটি সফলভাবে যোগ করা হয়েছে।`;
+              addResultMessage.classList.add('success');
+
+              nameInput.value = '';
+              englishNameInput.value = '';
+              numbersInput.value = '';
+              emailInput.value = '';
+              addressInput.value = '';
+          }
+
+          function callContact(number) {
+              window.location.href = `tel:${number}`;
+          }
+
+          function openWhatsApp(number) {
+              const formattedNumber = number.replace(/[^0-9+]/g, '');
+              window.open(`https://wa.me/${formattedNumber}`, '_blank');
+          }
+
+          function openImo(number) {
+              window.open(`imo://user/${number.replace(/[^0-9+]/g, '')}`, '_blank');
+          }
+
+          function searchFacebook(name) {
+              const searchQuery = `Facebook profile of ${name}`;
+              window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+              renderContacts();
+          });
     </script>
-</body>
+  </body>
 </html>
-
-
